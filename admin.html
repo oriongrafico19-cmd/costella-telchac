@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Costella · Administración</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a202b;--cream:#eee8dc;--gold:#c8a66a;--ink:#152731;--line:#d3cabb;--muted:#6d787d}*{box-sizing:border-box}body{margin:0;background:#f5f0e7;color:var(--ink);font-family:'DM Sans',sans-serif}.admin{display:grid;grid-template-columns:270px 1fr;min-height:100vh}.side{background:var(--navy);color:#fff;padding:32px 24px;position:sticky;top:0;height:100vh}.brand{font:500 34px 'Cormorant Garamond',serif;letter-spacing:.06em}.side small{display:block;color:#aebbc0;font-size:9px;letter-spacing:.15em;margin-top:2px}.side p{color:#9caeb5;font-size:12px;line-height:1.7;margin:35px 0}.side a{display:block;color:#dbe2e4;text-decoration:none;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:13px 0;border-bottom:1px solid #29434e}.side a:hover{color:var(--gold)}.main{padding:55px clamp(25px,5vw,80px);max-width:1200px}.top{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:40px}.top h1{font:500 clamp(48px,6vw,78px)/.9 'Cormorant Garamond',serif;margin:0}.top p{color:var(--muted);max-width:520px;line-height:1.7}.card{background:#fffdf8;border:1px solid var(--line);padding:30px;margin:18px 0;box-shadow:0 12px 40px rgba(10,32,43,.04)}.card h2{font:500 34px 'Cormorant Garamond',serif;margin:0 0 18px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:#6e777b}.field input,.field textarea,.field select{font:14px 'DM Sans',sans-serif;padding:13px 14px;border:1px solid var(--line);background:#faf7ef;color:var(--ink);outline:none}.field textarea{min-height:120px;resize:vertical}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}.button{border:0;background:var(--gold);color:#13252e;padding:15px 22px;font-weight:700;letter-spacing:.08em;cursor:pointer}.button.secondary{background:var(--navy);color:#fff}.note{font-size:11px;color:var(--muted);line-height:1.7}.status{position:fixed;right:25px;bottom:25px;background:var(--navy);color:#fff;padding:13px 17px;display:none;font-size:11px;box-shadow:0 15px 45px #0003}.status.show{display:block}.preview{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.preview div{padding:18px;background:#f1eadc;border:1px solid var(--line)}.preview strong{display:block;font:500 34px 'Cormorant Garamond',serif}.preview span{font-size:9px;color:var(--muted);letter-spacing:.1em}.danger{color:#8e493d}.code{font-family:ui-monospace,monospace;font-size:11px;background:#0b1820;color:#dbe4e7;padding:15px;overflow:auto}
+@media(max-width:850px){.admin{grid-template-columns:1fr}.side{position:relative;height:auto}.grid,.preview{grid-template-columns:1fr}.field.full{grid-column:auto}.top{display:block}}
+</style>
+</head>
+<body>
+<div class="admin">
+<aside class="side"><div class="brand">COSTELLA</div><small>TELCHAC RESIDENCIAL · ADMIN</small><p>Panel de edición V2. Esta primera versión guarda los cambios localmente en este navegador. La conexión a Cloudflare D1/R2 se incorpora en la siguiente etapa para que los cambios sean globales.</p><a href="index.html">Ver landing ↗</a><a href="#contenido">Contenido</a><a href="#comercial">Datos comerciales</a><a href="#media">Imágenes y video</a><a href="#conversion">Conversión</a></aside>
+<main class="main">
+<div class="top"><div><h1>Editar Costella.</h1><p>Controla los textos principales, datos comerciales, imágenes, video y enlaces de conversión sin modificar el diseño.</p></div></div>
+<section class="card" id="contenido"><h2>Contenido principal</h2><div class="grid">
+<div class="field full"><label>Título hero</label><textarea id="heroTitle">Vivir en Telchac es como estar siempre de vacaciones.</textarea></div>
+<div class="field full"><label>Subtítulo hero</label><textarea id="heroLead">Un lugar para vivir el presente y comenzar a imaginar todo lo que viene.</textarea></div>
+<div class="field"><label>Encabezado Telchac</label><input id="telchacTitle" value="El punto de inicio para disfrutar Yucatán."></div>
+<div class="field"><label>Encabezado Costella</label><input id="costellaTitle" value="Tu espacio en Telchac."></div>
+<div class="field"><label>Encabezado galería</label><input id="galleryTitle" value="Imagina tus días aquí."></div>
+<div class="field"><label>Encabezado amenidades</label><input id="amenitiesTitle" value="Más de 50 formas de disfrutar tu tiempo."></div>
+<div class="field"><label>Encabezado Club Stella</label><input id="clubTitle" value="Donde los momentos se encuentran."></div>
+<div class="field"><label>Encabezado comercial</label><input id="commercialTitle" value="El primer paso hacia tu espacio en Telchac."></div>
+</div></section>
+<section class="card" id="comercial"><h2>Datos comerciales</h2><div class="grid">
+<div class="field"><label>Apartado</label><input id="apartado" value="$5,000"></div><div class="field"><label>Enganche mínimo</label><input id="enganche" value="12%"></div>
+<div class="field"><label>Financiamiento</label><input id="financiamiento" value="12–180 meses"></div><div class="field"><label>Mensualidades</label><input id="mensualidades" value="Desde $3,300"></div>
+<div class="field"><label>WhatsApp</label><input id="whatsapp" placeholder="5219990000000"></div><div class="field"><label>Google Calendar / Meet</label><input id="booking" placeholder="https://calendar.google.com/... "></div>
+</div></section>
+<section class="card" id="media"><h2>Imágenes y video</h2><p class="note">Las imágenes actuales vienen del brochure que nos proporcionaste. En la versión final, el administrador podrá seleccionar archivos de la biblioteca multimedia. Para video, pega solamente el enlace de YouTube: no subiremos el MP4 al servidor.</p><div class="grid">
+<div class="field full"><label>URL de YouTube</label><input id="youtube" placeholder="https://www.youtube.com/watch?v=... "></div>
+<div class="field"><label>Hero / imagen principal</label><input id="heroImage" value="assets/brochure/brochure-01.jpg"></div><div class="field"><label>Imagen Club Stella</label><input id="clubImage" value="assets/brochure/brochure-13.jpg"></div>
+</div></section>
+<section class="card" id="conversion"><h2>Conversión y tracking</h2><div class="grid"><div class="field full"><label>Endpoint de leads</label><input id="leadEndpoint" placeholder="https://.../exec"></div><div class="field"><label>Meta Pixel ID</label><input id="pixel" placeholder="123456789..."></div></div><p class="note">Los eventos de Lead, CTA y agenda quedarán preparados para la integración definitiva. No coloques tokens secretos en este panel público; la autenticación del administrador y las credenciales del backend se añadirán con Cloudflare.</p></section>
+<section class="card"><h2>Vista de datos</h2><div class="preview"><div><strong id="pvApartado">$5,000</strong><span>APARTADO</span></div><div><strong id="pvEnganche">12%</strong><span>ENGANCHE</span></div><div><strong id="pvMensual">Desde $3,300</strong><span>MENSUALIDADES</span></div></div><div class="actions"><button class="button" id="save">GUARDAR CONFIGURACIÓN</button><button class="button secondary" id="export">EXPORTAR JSON</button><button class="button" id="reset">RESTABLECER</button></div><p class="note" style="margin-top:18px">Estado: <span id="state">sin cambios guardados</span></p></section>
+<div class="code">Arquitectura prevista: Landing pública → API segura → Cloudflare D1 (contenido) + R2 (biblioteca de imágenes) → Admin privado. Google Calendar, WhatsApp, Meta Pixel y el endpoint de leads quedan desacoplados.</div>
+</main></div><div class="status" id="status"></div>
+<script>
+const KEY='costella_admin_v2';
+const fields=['heroTitle','heroLead','telchacTitle','costellaTitle','galleryTitle','amenitiesTitle','clubTitle','commercialTitle','apartado','enganche','financiamiento','mensualidades','whatsapp','booking','youtube','heroImage','clubImage','leadEndpoint','pixel'];
+const $=id=>document.getElementById(id);
+const defaults={}; fields.forEach(id=>defaults[id]=$(id).value);
+function load(){try{const data=JSON.parse(localStorage.getItem(KEY)||'{}');fields.forEach(id=>{if(data[id]!==undefined)$(id).value=data[id]});updatePreview()}catch{} }
+function collect(){const o={};fields.forEach(id=>o[id]=$(id).value.trim());return o}
+function updatePreview(){$('pvApartado').textContent=$('apartado').value;$('pvEnganche').textContent=$('enganche').value;$('pvMensual').textContent=$('mensualidades').value}
+function status(t){const el=$('status');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2200)}
+$('save').onclick=()=>{localStorage.setItem(KEY,JSON.stringify(collect()));updatePreview();$('state').textContent='guardado en este navegador';status('Configuración guardada')};
+$('reset').onclick=()=>{if(confirm('¿Restablecer los valores iniciales?')){fields.forEach(id=>$(id).value=defaults[id]);localStorage.removeItem(KEY);updatePreview();$('state').textContent='restablecido';status('Valores restablecidos')}};
+$('export').onclick=()=>{const blob=new Blob([JSON.stringify(collect(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='costella-config.json';a.click();URL.revokeObjectURL(a.href)};
+fields.forEach(id=>$(id).addEventListener('input',updatePreview));load();
+</script>
+</body></html>

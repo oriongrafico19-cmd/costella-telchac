@@ -1,8 +1,8 @@
-// Configuración editable. Aquí conectaremos posteriormente Google Calendar, WhatsApp,
-// Apps Script/Sheets y Meta Pixel sin tocar el diseño.
+// Configuración editable. Más adelante puede alimentarse desde el CMS/Cloudflare.
 const COSTELLA_CONFIG = {
   bookingUrl: '',
   whatsappNumber: '',
   leadEndpoint: '',
-  metaPixelId: ''
+  metaPixelId: '',
+  youtubeUrl: ''
 };
