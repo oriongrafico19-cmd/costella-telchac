@@ -1,25 +1,47 @@
-# Costella · Landing V2
+# Costella · Landing V6
 
 Landing single-page para Costella Telchac Residencial.
 
 ## Estructura
+
 - `index.html` — landing pública.
-- `admin.html` — panel de edición V2 (prototipo local).
+- `admin.html` — panel de edición local.
 - `css/style.css` — identidad visual, responsive, lightbox, CTAs y componentes.
-- `js/config.js` — configuración de Calendar, WhatsApp, leads, Meta Pixel y YouTube.
-- `js/main.js` — navegación, modal de leads, lightbox, YouTube, WhatsApp y lectura de configuración.
-- `assets/brochure/` — visuales derivados del brochure proporcionado.
+- `js/config.js` — configuración de booking, IA, leads, Meta Pixel y YouTube.
+- `js/main.js` — navegación, CTAs, lightbox, IA y lectura de configuración.
+- `assets/brand/` — identidad visual de Costella.
+- `assets/renders/day/` — renders diurnos.
+- `assets/renders/night/` — renders nocturnos.
 
-## V2 incluye
-- CTAs grandes distribuidos después de las secciones.
-- Sin CTA de agenda en el header.
-- Botón flotante de WhatsApp.
-- Lightbox: las imágenes de contenido se pueden abrir a pantalla completa.
-- Video mediante URL de YouTube; no se suben archivos MP4.
-- Panel `admin.html` para editar contenido/datos y exportar JSON.
+## Dirección creativa
 
-## Importante sobre el administrador
-Esta versión guarda la configuración en `localStorage` para probar la experiencia de edición sin backend. Para producción, el siguiente paso es conectar el panel a un backend seguro con Cloudflare D1/R2 y proteger `admin.html` con autenticación/Cloudflare Access. Así los cambios serán globales para todos los visitantes.
+- Aspiracional, pero sin lenguaje inmobiliario genérico.
+- Narrativa centrada en territorio, criterio, oportunidad, privacidad, planeación y certeza.
+- CTAs orientados a conversación y booking, no a "Más información".
+- Renders separados entre día y noche para respetar la intención visual.
+- Master Plan preparado para sustituir la imagen temporal sin rediseñar la interfaz.
+- Paleta principal basada en el Brandbook:
+  - Azul/Constelación `#1D3E56`
+  - Verde/Selva Nocturna `#434B32`
+  - Gris/Marea Profunda `#1D1D1D`
+  - Beige/Luz de Arena `#F1EED6`
+- Tipografía preparada para Guaruja Neue y Lora. Si posteriormente se incorporan los archivos licenciados de Guaruja Neue, solo habrá que cargarlos sin rediseñar la interfaz.
 
-## Deploy
-El proyecto es estático. Si se publica como Worker con Wrangler, sirve el `index.html` desde la raíz. Si se usa Cloudflare Pages, el directorio raíz es `/` y no requiere comando de build.
+## Conversión
+
+Flujo previsto:
+
+Meta Ads → Landing → contenido/criterio → CTA → booking del asesor → videollamada.
+
+Los botones principales están preparados para abrir un enlace externo de booking del asesor en una nueva pestaña.
+
+### Configurar booking
+
+En:
+
+`site/js/config.js`
+
+configura:
+
+```js
+bookingUrl: 'PEGA_AQUI_EL_BOOKING_DEL_ASESOR'
