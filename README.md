@@ -59,3 +59,23 @@ Esto deja el paquete aproximadamente en 21 MB, frente al paquete anterior de gra
 4. Configurar `ALLOWED_ORIGIN` en Cloudflare.
 5. Probar todos los CTA en móvil y desktop.
 6. Configurar Meta Pixel si corresponde.
+
+
+## Cloudflare deployment
+
+This repository intentionally contains two separate Cloudflare Workers:
+
+### `costella-telchac`
+- Root directory in Cloudflare: `/`
+- Deploy command: `npx wrangler deploy --config site/wrangler.toml`
+- Worker config: `site/wrangler.toml`
+- Static landing files: `site/`
+- **Do not add `GEMINI_API_KEY` to this Worker.**
+
+### `costella-ai`
+- Root directory in Cloudflare: `/ai/worker`
+- Deploy command: `npx wrangler deploy`
+- Worker config: `ai/worker/wrangler.toml`
+- Required secret: `GEMINI_API_KEY`
+
+The two Workers use the same GitHub repository but are deployed independently.

@@ -1,74 +1,85 @@
-const MODEL = "gemini-3.8-flash";
+import { COSTELLA_KNOWLEDGE } from './knowledge.js';
+
+const MODEL = 'gemini-3.8-flash';
 
 const SYSTEM_INSTRUCTION = `
-Eres el Asesor Virtual de Costella Telchac Residencial.
+Eres el asistente de primera conversación de Costella Telchac Residencial.
 
-Tu objetivo es conversar de forma humana, natural, cálida y profesional con personas interesadas en Costella. Resuelve dudas usando únicamente el conocimiento aprobado que recibe el Worker. No inventes disponibilidad, precios individuales, promociones, horarios, fechas ni condiciones.
+Tu trabajo es orientar al prospecto de forma humana, natural, clara y elegante. No eres un vendedor agresivo. Ayudas a la persona a entender si Costella encaja con lo que está buscando y, cuando exista intención suficiente, invitas a agendar una videollamada con un asesor.
 
-Costella está en Telchac Pueblo, Yucatán. Es un desarrollo residencial urbanizado en régimen condominal con aproximadamente 19 hectáreas, 533 lotes, terrenos de 200 a 350 m² y 5 etapas.
+REGLAS:
+- Usa únicamente la base de conocimiento aprobada.
+- No inventes disponibilidad, lotes específicos, promociones, descuentos, horarios, fechas contractuales, rendimientos ni precios individuales.
+- Las condiciones comerciales son referencias y deben confirmarse con un asesor.
+- Los datos históricos de valor por m² son históricos; nunca los presentes como garantía de rendimiento futuro.
+- No presentes renders como fotografías de obra terminada.
+- No uses el documento de modelos de casas como catálogo de construcción.
+- Haz pocas preguntas a la vez y evita interrogatorios.
+- Si el usuario ya demuestra intención clara, no sigas preguntando innecesariamente: sugiere una videollamada.
+- No inventes horarios. El horario real lo determina el booking externo del asesor.
+- Si no sabes algo, dilo y ofrece la conversación con un asesor.
 
-Condiciones comerciales de referencia: apartado $5,000 MXN; enganche mínimo 12%; financiamiento de 12 a 180 meses; información comercial que indica primeros 84 meses sin intereses; mensualidades desde $3,300 MXN. Estas condiciones deben confirmarse con un asesor si el prospecto solicita una cotización actual.
+TONO:
+Profesional, directo, racional-estratégico, cercano y sin frases inmobiliarias genéricas. Evita 'oportunidad única', 'compra ahora', 'haz realidad tus sueños' y promesas de plusvalía.
 
-Hay más de 50 amenidades distribuidas en Capella Core, Tau Core, Club Stella y Ara Wellness Center. Club Stella incluye restaurante, bar, muelle, mirador, grill y un cuerpo de agua de aproximadamente 2,330 m².
-
-El material comercial muestra una evolución histórica del valor por m² entre diciembre de 2023 y enero de 2026. Preséntala solo como dato histórico y nunca como garantía de rendimiento futuro.
-
-No utilices el documento de modelos de casas como catálogo de construcción. La información disponible indica que los propietarios desarrollan su proyecto conforme a las condiciones del desarrollo y que Marnez Desarrollos no ofrece actualmente servicios de construcción.
-
-Haz pocas preguntas a la vez. Si el prospecto muestra intención de avanzar, ofrece de manera natural ayudar a agendar una videollamada con un asesor. Nunca inventes horarios: la disponibilidad debe venir de la herramienta de agenda cuando se conecte.
+OBJETIVO DE CONVERSACIÓN:
+1. Entender qué busca la persona.
+2. Resolver su duda con datos concretos.
+3. Detectar si busca vivir, construir, descanso o visión patrimonial.
+4. Si existe interés real, recomendar una videollamada como siguiente paso natural.
 `;
 
-function corsHeaders(origin) {
-  const allowed = origin || "*";
+function headers(origin, env) {
+  const allowed = env.ALLOWED_ORIGIN || origin || '*';
   return {
-    "Access-Control-Allow-Origin": allowed,
-    "Access-Control-Allow-Headers": "Content-Type",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Content-Type": "application/json; charset=utf-8"
+    'Access-Control-Allow-Origin': allowed,
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Vary': 'Origin',
+    'Content-Type': 'application/json; charset=utf-8'
   };
+}
+
+function json(data, status, origin, env) {
+  return new Response(JSON.stringify(data), { status, headers: headers(origin, env) });
 }
 
 export default {
   async fetch(request, env) {
-    const origin = request.headers.get("Origin") || "*";
-    if (request.method === "OPTIONS") return new Response(null, { headers: corsHeaders(origin) });
-    if (request.method !== "POST") return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405, headers: corsHeaders(origin) });
+    const origin = request.headers.get('Origin') || '';
+    if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: headers(origin, env) });
+    if (new URL(request.url).pathname !== '/chat') return json({ error: 'Ruta no encontrada.' }, 404, origin, env);
+    if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405, origin, env);
+    if (!env.GEMINI_API_KEY) return json({ error: 'GEMINI_API_KEY no está configurada en Cloudflare.' }, 500, origin, env);
 
     let body;
-    try { body = await request.json(); }
-    catch { return new Response(JSON.stringify({ error: "JSON inválido" }), { status: 400, headers: corsHeaders(origin) }); }
-
+    try { body = await request.json(); } catch { return json({ error: 'JSON inválido.' }, 400, origin, env); }
     const messages = Array.isArray(body.messages) ? body.messages : [];
-    const knowledge = typeof body.knowledge === "string" ? body.knowledge : "";
-    if (!env.GEMINI_API_KEY) return new Response(JSON.stringify({ error: "GEMINI_API_KEY no está configurada en Cloudflare." }), { status: 500, headers: corsHeaders(origin) });
+    if (!messages.length) return json({ error: 'No hay mensajes.' }, 400, origin, env);
 
     const contents = messages.slice(-12).map(m => ({
-      role: m.role === "assistant" ? "model" : "user",
-      parts: [{ text: String(m.content || "").slice(0, 5000) }]
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: String(m.content || '').slice(0, 4000) }]
     }));
 
-    const prompt = `${SYSTEM_INSTRUCTION}\n\nBASE DE CONOCIMIENTO:\n${knowledge.slice(0, 50000)}`;
+    const prompt = `${SYSTEM_INSTRUCTION}\n\nBASE DE CONOCIMIENTO APROBADA:\n${COSTELLA_KNOWLEDGE}`;
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
-    const result = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-goog-api-key": env.GEMINI_API_KEY
-      },
-      body: JSON.stringify({
-        systemInstruction: { parts: [{ text: prompt }] },
-        contents,
-        generationConfig: {
-          temperature: 0.7,
-          maxOutputTokens: 500
-        }
-      })
-    });
-
-    const data = await result.json();
-    if (!result.ok) return new Response(JSON.stringify({ error: "Gemini no pudo responder.", detail: data }), { status: 502, headers: corsHeaders(origin) });
-
-    const text = data?.candidates?.[0]?.content?.parts?.map(p => p.text || "").join("").trim() || "No pude generar una respuesta en este momento.";
-    return new Response(JSON.stringify({ text }), { status: 200, headers: corsHeaders(origin) });
+    try {
+      const result = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': env.GEMINI_API_KEY },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: prompt }] },
+          contents,
+          generationConfig: { temperature: 0.65, maxOutputTokens: 550 }
+        })
+      });
+      const data = await result.json();
+      if (!result.ok) return json({ error: 'Gemini no pudo responder en este momento.' }, 502, origin, env);
+      const text = data?.candidates?.[0]?.content?.parts?.map(p => p.text || '').join('').trim();
+      return json({ text: text || 'No pude generar una respuesta en este momento.' }, 200, origin, env);
+    } catch {
+      return json({ error: 'No se pudo conectar con Gemini.' }, 502, origin, env);
+    }
   }
 };
