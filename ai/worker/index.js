@@ -20,19 +20,31 @@ REGLAS:
 - Si no sabes algo, dilo y ofrece la conversación con un asesor.
 
 TONO:
-Profesional, directo, racional-estratégico, cercano y sin frases inmobiliarias genéricas. Evita 'oportunidad única', 'compra ahora', 'haz realidad tus sueños' y promesas de plusvalía.
+Profesional, directo, racional-estratégico, cercano y sin frases inmobiliarias genéricas.
 
-OBJETIVO DE CONVERSACIÓN:
+Evita:
+- "oportunidad única"
+- "compra ahora"
+- "haz realidad tus sueños"
+- promesas de plusvalía
+- presión artificial
+
+OBJETIVO:
 1. Entender qué busca la persona.
 2. Resolver su duda con datos concretos.
 3. Detectar si busca vivir, construir, descanso o visión patrimonial.
 4. Si existe interés real, recomendar una videollamada como siguiente paso natural.
 `;
 
-function headers(origin, env) {
-  const allowed = env.ALLOWED_ORIGIN || origin || '*';
+function getCorsHeaders(origin, env) {
+  const configuredOrigin = (env.ALLOWED_ORIGIN || '').trim();
+
+  // Si todavía no configuramos un dominio fijo, permitimos
+  // el Origin real de la landing para que el chat funcione.
+  const allowedOrigin = configuredOrigin || origin || '*';
+
   return {
-    'Access-Control-Allow-Origin': allowed,
+    'Access-Control-Allow-Origin': allowedOrigin,
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Vary': 'Origin',
@@ -41,45 +53,213 @@ function headers(origin, env) {
 }
 
 function json(data, status, origin, env) {
-  return new Response(JSON.stringify(data), { status, headers: headers(origin, env) });
+  return new Response(
+    JSON.stringify(data),
+    {
+      status,
+      headers: getCorsHeaders(origin, env)
+    }
+  );
+}
+
+function normalizeMessages(messages) {
+  return messages
+    .slice(-12)
+    .map((message) => ({
+      role: message.role === 'assistant' ? 'model' : 'user',
+      parts: [
+        {
+          text: String(message.content || '').slice(0, 4000)
+        }
+      ]
+    }))
+    .filter((message) => message.parts[0].text.trim());
 }
 
 export default {
   async fetch(request, env) {
     const origin = request.headers.get('Origin') || '';
-    if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: headers(origin, env) });
-    if (new URL(request.url).pathname !== '/chat') return json({ error: 'Ruta no encontrada.' }, 404, origin, env);
-    if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405, origin, env);
-    if (!env.GEMINI_API_KEY) return json({ error: 'GEMINI_API_KEY no está configurada en Cloudflare.' }, 500, origin, env);
+
+    if (request.method === 'OPTIONS') {
+      return new Response(null, {
+        status: 204,
+        headers: getCorsHeaders(origin, env)
+      });
+    }
+
+    const url = new URL(request.url);
+
+    if (url.pathname !== '/chat') {
+      return json(
+        { error: 'Ruta no encontrada.' },
+        404,
+        origin,
+        env
+      );
+    }
+
+    if (request.method !== 'POST') {
+      return json(
+        { error: 'Method not allowed' },
+        405,
+        origin,
+        env
+      );
+    }
+
+    if (!env.GEMINI_API_KEY) {
+      return json(
+        {
+          error: 'GEMINI_API_KEY no está configurada en Cloudflare.'
+        },
+        500,
+        origin,
+        env
+      );
+    }
 
     let body;
-    try { body = await request.json(); } catch { return json({ error: 'JSON inválido.' }, 400, origin, env); }
-    const messages = Array.isArray(body.messages) ? body.messages : [];
-    if (!messages.length) return json({ error: 'No hay mensajes.' }, 400, origin, env);
 
-    const contents = messages.slice(-12).map(m => ({
-      role: m.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: String(m.content || '').slice(0, 4000) }]
-    }));
-
-    const prompt = `${SYSTEM_INSTRUCTION}\n\nBASE DE CONOCIMIENTO APROBADA:\n${COSTELLA_KNOWLEDGE}`;
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
     try {
-      const result = await fetch(url, {
+      body = await request.json();
+    } catch {
+      return json(
+        { error: 'JSON inválido.' },
+        400,
+        origin,
+        env
+      );
+    }
+
+    const messages = Array.isArray(body.messages)
+      ? body.messages
+      : [];
+
+    if (!messages.length) {
+      return json(
+        { error: 'No hay mensajes.' },
+        400,
+        origin,
+        env
+      );
+    }
+
+    const contents = normalizeMessages(messages);
+
+    if (!contents.length) {
+      return json(
+        { error: 'El mensaje está vacío.' },
+        400,
+        origin,
+        env
+      );
+    }
+
+    const knowledgePrompt = `
+${SYSTEM_INSTRUCTION}
+
+BASE DE CONOCIMIENTO APROBADA:
+
+${COSTELLA_KNOWLEDGE}
+`;
+
+    const endpoint =
+      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
+
+    try {
+      const response = await fetch(endpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': env.GEMINI_API_KEY },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': env.GEMINI_API_KEY
+        },
         body: JSON.stringify({
-          systemInstruction: { parts: [{ text: prompt }] },
+          systemInstruction: {
+            parts: [
+              {
+                text: knowledgePrompt
+              }
+            ]
+          },
+
           contents,
-          generationConfig: { temperature: 0.65, maxOutputTokens: 550 }
+
+          generationConfig: {
+            thinkingConfig: {
+              thinkingLevel: 'low'
+            }
+          }
         })
       });
-      const data = await result.json();
-      if (!result.ok) return json({ error: 'Gemini no pudo responder en este momento.' }, 502, origin, env);
-      const text = data?.candidates?.[0]?.content?.parts?.map(p => p.text || '').join('').trim();
-      return json({ text: text || 'No pude generar una respuesta en este momento.' }, 200, origin, env);
-    } catch {
-      return json({ error: 'No se pudo conectar con Gemini.' }, 502, origin, env);
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error(
+          'Gemini API error:',
+          response.status,
+          JSON.stringify(data)
+        );
+
+        const providerMessage =
+          data?.error?.message ||
+          `HTTP ${response.status}`;
+
+        return json(
+          {
+            error: 'Gemini no pudo responder en este momento.',
+            detail: providerMessage
+          },
+          502,
+          origin,
+          env
+        );
+      }
+
+      const text =
+        data?.candidates?.[0]?.content?.parts
+          ?.map((part) => part.text || '')
+          .join('')
+          .trim();
+
+      if (!text) {
+        console.error(
+          'Gemini respondió sin texto:',
+          JSON.stringify(data)
+        );
+
+        return json(
+          {
+            error: 'Gemini no devolvió una respuesta de texto.'
+          },
+          502,
+          origin,
+          env
+        );
+      }
+
+      return json(
+        { text },
+        200,
+        origin,
+        env
+      );
+
+    } catch (error) {
+      console.error(
+        'Connection error:',
+        error?.message || error
+      );
+
+      return json(
+        {
+          error: 'No se pudo conectar con Gemini.',
+          detail: error?.message || 'Unknown error'
+        },
+        502,
+        origin,
+        env
+      );
     }
   }
 };
