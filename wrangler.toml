@@ -1,0 +1,8 @@
+name = "costella-telchac-web"
+main = "worker.js"
+compatibility_date = "2026-09-22"
+workers_dev = true
+
+[assets]
+directory = "."
+binding = "ASSETS"
