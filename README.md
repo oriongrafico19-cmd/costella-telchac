@@ -1,67 +1,62 @@
-# Costella Telchac Residencial · V10 Static
+# Costella Telchac Residencial · V11
 
-Pure static landing for Cloudflare Workers Static Assets.
+Landing editorial/cinematográfica para Costella Telchac Residencial.
 
-## Repository root
+## Estructura de despliegue
 
-Upload the contents of this folder directly to the GitHub repository root:
+Este es un sitio estático de una sola raíz. No usa `site/`, no usa un Worker runtime y no requiere Gemini.
 
 ```text
 assets/
 css/
 js/
 index.html
+admin.html
 wrangler.toml
 README.md
 ```
 
-There is intentionally no `site/` folder and no `worker.js`.
+## Imágenes especiales
 
-## Cloudflare Workers
+- `assets/renders/day/top-master-plan.webp` — Top Master Plan utilizado en la primera sección territorial.
+- `assets/renders/day/master-plan-final.webp` — Master Plan detallado con etapas y núcleos de amenidades.
 
-Use Workers Static Assets (recommended by Cloudflare for new static sites).
+## Administración de enlaces
 
-Configuration:
+Abre `/admin.html` en el mismo dominio. Desde ahí puedes preparar: booking del asesor, webinar, lead endpoint y video.
 
-```text
-Root directory: /
-Build command:   [empty]
-Deploy command:  npx wrangler deploy
-Branch:          main
-```
+El panel guarda cambios localmente para pruebas y permite descargar un `config.js`. Para publicar cambios a todos los visitantes: descarga el archivo y reemplaza `js/config.js` en GitHub.
 
-The `wrangler.toml` points `assets.directory` to the repository root.
+## Cloudflare
 
-Do not add `GEMINI_API_KEY` or any other runtime secret for this static Worker.
+Usa Workers Static Assets:
 
-## Booking / webinar
+- Root directory: `/`
+- Build command: vacío
+- Deploy command: `npx wrangler deploy`
+- Branch: `main`
 
-Edit `js/config.js`:
+No agregues `GEMINI_API_KEY`.
 
-```js
-const COSTELLA_CONFIG = {
-  bookingUrl: '',
-  leadEndpoint: '',
-  webinarUrl: '',
-  webinarSlots: 10,
-  showWebinarScarcity: false,
-  metaPixelId: '',
-  qualificationReferenceDownPayment: 80000
-};
-```
+## Funnel
 
-## Qualification funnel
+Todos los CTA principales abren una evaluación de 5 preguntas. La combinación de respuestas determina el resultado comercial:
 
-Every main CTA opens the five-question qualification modal.
+- 768 de 1,024 combinaciones = 75% compatibles
+- 256 de 1,024 combinaciones = 25% alternativa
 
-The result determines the next step:
+Perfil compatible → booking/webinar.
 
-- Compatible profile → booking and/or webinar.
-- Alternative profile → short data-capture form for another project.
+Perfil alternativo → formulario corto de nombre + WhatsApp.
 
-The qualification itself is an initial commercial filter, not a contractual or financial approval.
+## Datos comerciales destacados
+
+La página usa datos proporcionados en la documentación de Costella: 19 ha, 533 lotes, terrenos de 200–350 m², 5 etapas, apartado de $5,000 MXN, enganche mínimo de 12%, financiamiento de 12–180 meses y mensualidades desde $3,300 MXN, sujetos a condiciones vigentes.
+
+Etapas: 1 (2029), 2 (2030), 3 (2031), 4 y 5 próximamente.
+
+Amenidades: Capella Core (Etapa 2), Tau Core (Etapa 3), Club Stella (Etapa 4) y Ara Wellness Center (Etapa 5).
 
 ## Video
 
-YouTube:
 https://youtu.be/GN3wHvDtAbM

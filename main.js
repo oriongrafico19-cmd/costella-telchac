@@ -1,5 +1,10 @@
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+try {
+  const localConfig = localStorage.getItem('costella_config');
+  if (localConfig) Object.assign(COSTELLA_CONFIG, JSON.parse(localConfig));
+} catch {}
+
 
 function track(name, params = {}) {
   if (COSTELLA_CONFIG.metaPixelId && window.fbq) window.fbq('track', name, params);
