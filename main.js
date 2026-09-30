@@ -156,7 +156,7 @@ function openQualification() {
   modal?.classList.add('open');
   modal?.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
-  track('ViewContent', { content_name: 'Costella Qualification V9' });
+  track('ViewContent', { content_name: 'Costella Qualification V12' });
 }
 
 function closeQualification() {
@@ -207,7 +207,7 @@ function calculateQualification() {
 
 async function submitLead(extra = {}) {
   const payload = {
-    source: 'costella-qualification-v9',
+    source: 'costella-qualification-v12',
     timestamp: new Date().toISOString(),
     answers,
     ...extra
