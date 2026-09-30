@@ -4,5 +4,6 @@ const COSTELLA_CONFIG = {
   leadEndpoint: '',
   webinarSlots: 10,
   showWebinarScarcity: false,
-  metaPixelId: ''
+  metaPixelId: '',
+  qualificationReferenceDownPayment: 80000
 };

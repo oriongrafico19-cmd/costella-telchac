@@ -1,19 +1,24 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#1D3E56" />
-  <meta name="description" content="Costella Telchac Residencial — territorio, planeación y una visión distinta de vivir en la costa yucateca." />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b1c28">
+  <meta name="description" content="Costella Telchac Residencial — una comunidad residencial pensada alrededor del territorio, la planeación y una visión patrimonial de largo plazo.">
   <title>Costella Telchac Residencial</title>
-  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+  <div class="page-progress"><span id="pageProgress"></span></div>
+
   <header class="site-header" id="siteHeader">
     <a class="brand" href="#top" aria-label="Costella Telchac">
-      <img src="/assets/brand/costella-logo-white.png" alt="Costella Telchac Residencial" />
+      <img src="/assets/brand/costella-logo-white.png" alt="Costella Telchac Residencial">
     </a>
-    <nav class="nav" aria-label="Navegación principal">
+    <nav class="nav">
       <a href="#territorio">Territorio</a>
       <a href="#proyecto">Proyecto</a>
       <a href="#masterplan">Master Plan</a>
@@ -21,302 +26,441 @@
       <a href="#inversion">Inversión</a>
       <a href="#preguntas">Preguntas</a>
     </nav>
-    <button class="nav-cta js-qualify" type="button">Conoce si tu perfil es compatible <span>↗</span></button>
+    <button class="cta cta-small js-qualify">Descubre si tu perfil es compatible <span>↗</span></button>
   </header>
 
   <main id="top">
-    <section class="hero" aria-label="Costella Telchac">
-      <div class="hero-bg"></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-content container reveal">
-        <div class="eyebrow light">Costella · Telchac Yucatán</div>
-        <h1>No todos buscan<br><em>un terreno.</em></h1>
-        <p>Algunos buscan el lugar donde construir, conservar espacio y tomar una decisión patrimonial con visión de largo plazo.</p>
-        <button class="cta cta-light js-qualify" type="button">Conoce si tu perfil es compatible <span>↗</span></button>
+
+    <!-- HERO -->
+    <section class="hero section-dark">
+      <div class="hero-media">
+        <img src="/assets/renders/night/entrada-nocturna.webp" alt="Acceso nocturno a Costella Telchac" fetchpriority="high">
       </div>
-      <div class="hero-bottom container">
-        <div class="hero-note">Un territorio pensado<br>antes de ser ocupado.</div>
-        <div class="hero-scroll">Desliza ↓</div>
+      <div class="hero-gradient"></div>
+      <div class="hero-inner container">
+        <div class="hero-copy reveal">
+          <div class="eyebrow eyebrow-light">TERRENOS RESIDENCIALES · TELCHAC YUCATÁN</div>
+          <h1>Hay lugares que<br><em>se eligen distinto.</em></h1>
+          <p>Costella nace para quienes no están buscando solamente un terreno, sino el lugar donde quieren construir, preservar espacio y decidir con visión de largo plazo.</p>
+          <button class="cta cta-gold js-qualify">Descubre si tu perfil es compatible <span>↗</span></button>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item"><span>01</span><b>Territorio</b><small>19 ha · Telchac Pueblo</small></div>
+          <div class="hero-meta-item"><span>02</span><b>Residencial</b><small>533 lotes · 200–350 m²</small></div>
+          <div class="hero-meta-item"><span>03</span><b>Visión</b><small>5 etapas · entregas progresivas</small></div>
+        </div>
+      </div>
+      <div class="hero-foot container">
+        <span>Costella · Telchac</span>
+        <a href="#territorio">Explorar el proyecto ↓</a>
       </div>
     </section>
 
-    <section class="intro section-cream" id="territorio">
-      <div class="container narrow reveal">
-        <div class="eyebrow">Una decisión distinta</div>
-        <h2>Si solo buscas dónde comprar,<br><em>hay muchas opciones.</em></h2>
-        <p class="lead">Si buscas dónde construir una vida, preservar espacio y tomar una decisión patrimonial con calma, vale la pena mirar el territorio de otra manera.</p>
+    <!-- MANIFIESTO -->
+    <section class="manifest section-cream">
+      <div class="container manifest-grid">
+        <div class="manifest-title reveal">
+          <div class="eyebrow">UNA DECISIÓN DISTINTA</div>
+          <h2>Si solo buscas dónde comprar,<br><em>hay muchas opciones.</em></h2>
+        </div>
+        <div class="manifest-copy reveal">
+          <p class="lead">Si buscas dónde construir una vida, preservar espacio y tomar una decisión patrimonial con calma, vale la pena mirar el territorio de otra manera.</p>
+          <div class="rule"></div>
+          <p>Ubicación, amplitud, privacidad, infraestructura y espacios que acompañan el tiempo que vas a pasar aquí.</p>
+          <button class="text-link dark js-qualify">Descubre si tu perfil es compatible <span>↗</span></button>
+        </div>
       </div>
-      <div class="container editorial-grid reveal">
-        <figure class="media-card media-card-large"><img src="/assets/renders/day/caseta.webp" alt="Acceso a Costella Telchac" loading="lazy"></figure>
-        <div class="editorial-copy navy-card">
-          <div class="eyebrow light">El territorio</div>
+      <div class="container manifest-media reveal">
+        <div class="manifest-image"><img src="/assets/renders/day/caseta.webp" alt="Acceso principal a Costella"></div>
+        <div class="manifest-side">
+          <div class="eyebrow">EL LUGAR IMPORTA</div>
           <h3>¿Qué quieres que exista alrededor de lo que vas a construir?</h3>
-          <p>Costella parte de esa pregunta: ubicación, amplitud, privacidad, infraestructura y espacios que acompañen el tiempo que vas a pasar aquí.</p>
-          <button class="text-link light-link js-qualify" type="button">Conoce si tu perfil es compatible <span>↗</span></button>
+          <p>Costella combina naturaleza, planeación y acceso controlado en un entorno residencial de baja saturación.</p>
+          <div class="mini-stats">
+            <span><b>19</b><small>hectáreas</small></span>
+            <span><b>533</b><small>lotes</small></span>
+            <span><b>5</b><small>etapas</small></span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="territory section-navy reveal-snap">
-      <div class="container section-head split">
+    <!-- TERRITORIO -->
+    <section id="territorio" class="territory section-dark">
+      <div class="container section-intro split reveal">
         <div>
-          <div class="eyebrow light">01 · Territorio</div>
+          <div class="eyebrow eyebrow-light">01 · TERRITORIO</div>
           <h2>Antes del terreno,<br><em>está el lugar.</em></h2>
         </div>
-        <div class="section-head-copy light-muted">Costella se encuentra en Telchac Pueblo, conectado con la costa yucateca, la naturaleza y algunos de los destinos que forman parte de la experiencia de Yucatán.</div>
+        <p>Telchac Pueblo conecta el proyecto con la costa, la naturaleza y algunos de los destinos que forman parte de la experiencia de Yucatán.</p>
       </div>
-      <div class="container plan-hero reveal">
-        <div class="plan-image"><img src="/assets/renders/day/top-master-plan-v13.webp" alt="Vista aérea de Costella y su relación con el territorio" loading="lazy"></div>
-        <div class="distance-panel">
-          <div class="distance-item"><strong>7 km</strong><span>Muelle de Telchac Puerto Club</span></div>
-          <div class="distance-item"><strong>12 km</strong><span>Seahorse Hotel · referencia de la zona</span></div>
-          <div class="distance-item"><strong>13.5 km</strong><span>Reef Club</span></div>
-          <div class="distance-item"><strong>39 km</strong><span>Chicxulub & Sendero Jurásico</span></div>
-          <div class="distance-item"><strong>50 km</strong><span>Malecón de Progreso</span></div>
-          <div class="distance-item"><strong>70 km</strong><span>Mérida</span></div>
+
+      <div class="container territory-feature reveal">
+        <div class="image-frame tall">
+          <img src="/assets/renders/day/top-master-plan-v13.webp" alt="Vista aérea del territorio y Costella frente a la costa" loading="lazy">
+          <span class="image-tag">TOP MASTER PLAN · TERRITORIO</span>
         </div>
+        <aside class="distance-card">
+          <div class="distance-card-head"><span>EN CONTEXTO</span><b>Distancias</b></div>
+          <div class="distance-list">
+            <div><strong>7 km</strong><span>Muelle de Telchac Puerto Club</span></div>
+            <div><strong>13.5 km</strong><span>Reef Club</span></div>
+            <div><strong>39 km</strong><span>Chicxulub & Sendero Jurásico</span></div>
+            <div><strong>50 km</strong><span>Malecón de Progreso</span></div>
+            <div><strong>70 km</strong><span>Mérida</span></div>
+          </div>
+          <button class="text-link light js-qualify">Descubre si tu perfil es compatible <span>↗</span></button>
+        </aside>
       </div>
-      <div class="container cta-row"><button class="cta cta-gold js-qualify" type="button">Conoce si tu perfil es compatible <span>↗</span></button></div>
     </section>
 
-    <section class="project section-cream" id="proyecto">
-      <div class="container section-head split reveal">
+    <!-- PROYECTO / GRID EDITORIAL -->
+    <section id="proyecto" class="project section-cream">
+      <div class="container section-intro split reveal">
         <div>
-          <div class="eyebrow">02 · El proyecto</div>
+          <div class="eyebrow">02 · EL PROYECTO</div>
           <h2>Un proyecto que<br><em>deja espacio.</em></h2>
         </div>
-        <div class="section-head-copy">19 hectáreas. 533 lotes residenciales. Desde 200 hasta 350 m². Cinco etapas y una planeación que busca que el territorio conserve presencia, naturaleza y privacidad.</div>
+        <p>Una comunidad residencial urbanizada en régimen condominal, con uso habitacional y una planeación que integra áreas verdes, amenidades y vialidades desde el origen.</p>
       </div>
-      <div class="container metrics reveal">
-        <div><strong>19</strong><span>Hectáreas</span></div>
-        <div><strong>533</strong><span>Lotes residenciales</span></div>
-        <div><strong>200–350</strong><span>m² por lote</span></div>
-        <div><strong>05</strong><span>Etapas</span></div>
-      </div>
-      <div class="container two-up reveal">
-        <figure class="media-card"><img src="/assets/renders/day/master-plan-v13.webp" alt="Plan general del desarrollo" loading="lazy"></figure>
-        <div class="copy-block">
-          <div class="eyebrow">Una escala distinta</div>
-          <h3>Más espacio.<br><em>Menos saturación.</em></h3>
-          <p>Costella se plantea como un residencial urbanizado en régimen condominal, con uso habitacional, áreas verdes y amenidades distribuidas para acompañar el desarrollo por etapas.</p>
-          <button class="text-link js-qualify" type="button">Conoce si tu perfil es compatible <span>↗</span></button>
+
+      <div class="container project-grid reveal">
+        <div class="project-copy">
+          <div class="project-number">19</div>
+          <span>HECTÁREAS</span>
+          <div class="copy-rule"></div>
+          <div class="project-note">533 lotes residenciales</div>
+        </div>
+        <div class="project-image wide"><img src="/assets/renders/day/aerea-club.webp" alt="Vista aérea de Costella" loading="lazy"></div>
+        <div class="project-image small"><img src="/assets/renders/day/parque.webp" alt="Áreas verdes y parque" loading="lazy"></div>
+        <div class="project-copy dark-panel">
+          <div class="eyebrow eyebrow-light">UNA ESCALA RESIDENCIAL</div>
+          <h3>200–350 m²</h3>
+          <p>Terrenos pensados para construir con amplitud y mantener una relación más abierta con el entorno.</p>
+          <button class="text-link light js-qualify">Descubre si tu perfil es compatible <span>↗</span></button>
         </div>
       </div>
     </section>
 
-    <section class="stages section-ink reveal-snap" id="masterplan">
-      <div class="container section-head split light-block">
+    <!-- MASTER PLAN -->
+    <section id="masterplan" class="masterplan section-dark">
+      <div class="container section-intro split reveal">
         <div>
-          <div class="eyebrow light">03 · Master Plan</div>
-          <h2>Un territorio pensado<br><em>antes de ser ocupado.</em></h2>
+          <div class="eyebrow eyebrow-light">03 · MASTER PLAN</div>
+          <h2>Planeado antes<br><em>de ser ocupado.</em></h2>
         </div>
-        <div class="section-head-copy light-muted">La forma del desarrollo no es decoración: organiza los recorridos, los espacios de convivencia, las áreas verdes y la experiencia de cada etapa.</div>
+        <p>El proyecto distribuye sus etapas, áreas comunes y espacios verdes para que el crecimiento ocurra con una lógica clara desde el inicio.</p>
       </div>
-      <div class="container master-detail reveal">
-        <figure><img src="/assets/renders/day/master-plan-v13.webp" alt="Master Plan Costella Telchac" loading="lazy"></figure>
-        <div class="detail-side">
-          <div class="eyebrow light">Etapas y núcleos</div>
-          <div class="master-list">
-            <div><b>01</b><span>Friends & Family</span><small>100% vendido</small></div>
-            <div><b>02</b><span>Capella Core</span><small>100% vendido</small></div>
-            <div><b>03</b><span>Tau Core</span><small>Disponible</small></div>
-            <div><b>04</b><span>Club Stella</span><small>Próximamente</small></div>
-            <div><b>05</b><span>Ara Wellness</span><small>Próximamente</small></div>
-          </div>
-          <p class="light-muted">Las fechas actuales del proyecto contemplan entregas progresivas: Etapa 1 en 2029, Etapa 2 en 2030 y Etapa 3 en 2031; las etapas 4 y 5 continúan sujetas a su comercialización.</p>
-          <button class="cta cta-outline-light js-qualify" type="button">Conoce si tu perfil es compatible <span>↗</span></button>
+
+      <div class="container master-feature reveal">
+        <div class="master-copy">
+          <div class="eyebrow eyebrow-light">EL TRAZO GENERAL</div>
+          <h3>Naturaleza, circulación y amenidades dentro de una misma visión.</h3>
+          <p>Una lectura territorial donde los núcleos de experiencia se distribuyen a lo largo del desarrollo.</p>
+          <button class="cta cta-outline js-qualify">Descubre si tu perfil es compatible <span>↗</span></button>
         </div>
+        <figure class="master-image">
+          <img src="/assets/renders/day/master-plan-detail.webp" alt="Master Plan detallado de Costella" loading="lazy">
+          <figcaption>Master Plan · etapas y núcleos de amenidades</figcaption>
+        </figure>
+      </div>
+
+      <div class="container stage-line reveal">
+        <div class="stage"><span>01</span><b>ETAPA 1</b><small>2029 · concluida comercialmente</small></div>
+        <div class="stage"><span>02</span><b>ETAPA 2</b><small>2030 · conclusión comercial</small></div>
+        <div class="stage active"><span>03</span><b>ETAPA 3</b><small>2031 · disponible</small></div>
+        <div class="stage"><span>04</span><b>ETAPA 4</b><small>Próximamente</small></div>
+        <div class="stage"><span>05</span><b>ETAPA 5</b><small>Próximamente</small></div>
       </div>
     </section>
 
-    <section class="detail section-cream reveal">
-      <div class="container split-detail">
-        <div class="copy-block large-copy">
-          <div class="eyebrow">El plan en detalle</div>
-          <h2>La experiencia se organiza<br><em>por etapas.</em></h2>
-          <p>El plan maestro integra espacios residenciales, vegetación, recorridos y núcleos de amenidades para que el desarrollo tenga lectura desde el territorio hasta cada experiencia.</p>
-          <ul class="micro-list">
-            <li>Capella Core · Etapa 2</li>
-            <li>Tau Core · Etapa 3</li>
-            <li>Club Stella · Etapa 4</li>
-            <li>Ara Wellness Center · Etapa 5</li>
-          </ul>
-        </div>
-        <figure class="detail-image"><img src="/assets/renders/day/master-plan-v13.webp" alt="Master plan detallado de Costella" loading="lazy"></figure>
-      </div>
-    </section>
-
-    <section class="video-section section-navy reveal" id="video">
-      <div class="container video-head split">
+    <!-- VIDEO -->
+    <section class="video-section section-deep">
+      <div class="container video-head split reveal">
         <div>
-          <div class="eyebrow light">04 · El proyecto en movimiento</div>
+          <div class="eyebrow eyebrow-light">04 · EL PROYECTO EN MOVIMIENTO</div>
           <h2>Conoce Costella<br><em>más allá de una imagen.</em></h2>
         </div>
-        <div class="section-head-copy light-muted">Un recorrido por el entorno, la planeación y la experiencia que propone Costella en la costa yucateca.</div>
+        <p>Un recorrido por el entorno, la planeación y la experiencia que propone Costella en la costa yucateca.</p>
       </div>
-      <div class="container video-frame">
-        <iframe src="https://www.youtube-nocookie.com/embed/GN3wHvDtAbM?rel=0&modestbranding=1" title="Video de Costella Telchac" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-      <div class="container feature-strip">
-        <div><span class="icon">◌</span><strong>Naturaleza</strong><span>y tranquilidad</span></div>
-        <div><span class="icon">✦</span><strong>Amenidades</strong><span>de primer nivel</span></div>
-        <div><span class="icon">◈</span><strong>Acceso</strong><span>controlado</span></div>
-        <div><span class="icon">↗</span><strong>Visión</strong><span>a largo plazo</span></div>
+      <div class="container video-frame reveal">
+        <div class="video-ratio">
+          <iframe src="https://www.youtube-nocookie.com/embed/GN3wHvDtAbM?rel=0&modestbranding=1" title="Costella Telchac Residencial" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
       </div>
     </section>
 
-    <section class="investment section-cream" id="inversion">
-      <div class="container section-head split reveal">
+    <!-- INVERSIÓN -->
+    <section id="inversion" class="investment section-cream">
+      <div class="container section-intro split reveal">
         <div>
-          <div class="eyebrow">05 · Inversión con sentido</div>
-          <h2>Condiciones para<br><em>hacerlo posible.</em></h2>
+          <div class="eyebrow">05 · INVERSIÓN</div>
+          <h2>Tu patrimonio en la costa,<br><em>al alcance.</em></h2>
         </div>
-        <div class="section-head-copy">La información comercial debe servir para tomar una decisión, no para presionarla. Estas son las condiciones de referencia actuales.</div>
+        <p>Condiciones comerciales pensadas para entrar a un proyecto residencial con pagos progresivos y opciones de financiamiento.</p>
       </div>
-      <div class="container investment-grid reveal">
-        <div class="investment-card"><span>Apartado</span><strong>$5,000</strong><small>MXN</small></div>
-        <div class="investment-card"><span>Enganche mínimo</span><strong>12%</strong><small>del precio del terreno</small></div>
-        <div class="investment-card"><span>Financiamiento</span><strong>12–180</strong><small>meses</small></div>
-        <div class="investment-card"><span>Mensualidades</span><strong>Desde $3,300</strong><small>MXN · referencia actual</small></div>
+      <div class="container finance-grid reveal">
+        <article class="finance-card"><span class="finance-kicker">APARTADO</span><strong>$5,000</strong><small>MXN</small><p>Reserva inicial del terreno.</p></article>
+        <article class="finance-card accent"><span class="finance-kicker">ENGANCHE</span><strong>12%</strong><small>del valor del terreno</small><p>Enganche mínimo vigente.</p></article>
+        <article class="finance-card"><span class="finance-kicker">FINANCIAMIENTO</span><strong>12–180</strong><small>meses</small><p>Los primeros 84 meses sin interés, según información comercial.</p></article>
+        <article class="finance-card"><span class="finance-kicker">MENSUALIDADES</span><strong>$3,300</strong><small>MXN desde</small><p>Referencia mínima documentada.</p></article>
       </div>
-      <div class="container investment-bottom reveal">
-        <div>
-          <p class="eyebrow">Además</p>
-          <p>Los primeros 84 meses del financiamiento se señalan sin interés en la información comercial. La disponibilidad, precio final y condiciones deben confirmarse con el asesor.</p>
-        </div>
-        <button class="cta cta-navy js-qualify" type="button">Conoce si tu perfil es compatible <span>↗</span></button>
+      <div class="container finance-note reveal">
+        <div><span class="icon">↗</span><div><b>La entrada es una condición, no la historia completa.</b><p>La disponibilidad, precio por lote y condiciones vigentes se confirman directamente con el asesor.</p></div></div>
+        <button class="cta cta-navy js-qualify">Descubre si tu perfil es compatible <span>↗</span></button>
       </div>
     </section>
 
-    <section class="amenities section-ink" id="experiencia">
-      <div class="container section-head split light-block reveal">
+    <!-- EXPERIENCIA / AMENITIES -->
+    <section id="experiencia" class="experience section-dark">
+      <div class="container section-intro split reveal">
         <div>
-          <div class="eyebrow light">06 · Experiencia</div>
+          <div class="eyebrow eyebrow-light">06 · EXPERIENCIA</div>
           <h2>El entorno también<br><em>forma parte de la decisión.</em></h2>
         </div>
-        <div class="section-head-copy light-muted">Más de 50 amenidades distribuidas en cuatro núcleos. La propuesta no es sumar servicios: es construir distintas maneras de vivir el territorio.</div>
+        <p>Más de 50 amenidades distribuidas en cuatro núcleos. No como una lista, sino como diferentes maneras de vivir el proyecto a través del tiempo.</p>
       </div>
-      <div class="container amenity-grid reveal">
-        <article class="amenity-card"><img src="/assets/renders/day/parque.webp" alt="Capella Core" loading="lazy"><div><span>Etapa 2</span><h3>Capella Core</h3><p>Ciclopista · Kids Park · Pet Park · Movie Park · Mixed Park</p></div></article>
-        <article class="amenity-card"><img src="/assets/renders/day/wellness.webp" alt="Tau Core" loading="lazy"><div><span>Etapa 3</span><h3>Tau Core</h3><p>Mixed Park · Wet Park · Pet Park · Zen Garden · Ciclopista</p></div></article>
-        <article class="amenity-card featured"><img src="/assets/renders/night/club-stella-laguna-night.webp" alt="Club Stella" loading="lazy"><div><span>Etapa 4</span><h3>Club Stella</h3><p>Restaurante · Bar · Muelle · Mirador · Cuerpo de agua · Grill · Ciclopista</p></div></article>
-        <article class="amenity-card"><img src="/assets/renders/night/ara-wellness-night.webp" alt="Ara Wellness Center" loading="lazy"><div><span>Etapa 5</span><h3>Ara Wellness Center</h3><p>Mini Golf · Gym · Tenis · Pádel · Spa Zen · Voleibol · Canal de Nado · Alberca</p></div></article>
+
+      <div class="container amenities-grid reveal">
+        <article class="amenity-card large">
+          <img src="/assets/renders/day/family-club.webp" alt="Capella Core" loading="lazy">
+          <div class="amenity-overlay"><span>ETAPA 2</span><h3>Capella Core</h3><p>Mixed Park · Kids Park · Pet Park · Movie Park · Ciclopista</p></div>
+        </article>
+        <article class="amenity-card">
+          <img src="/assets/renders/day/parque.webp" alt="Tau Core" loading="lazy">
+          <div class="amenity-overlay"><span>ETAPA 3</span><h3>Tau Core</h3><p>Mixed Park · Wet Park · Pet Park · Zen Garden · Ciclopista</p></div>
+        </article>
+        <article class="amenity-card night">
+          <img src="/assets/renders/night/club-stella-laguna-night.webp" alt="Club Stella" loading="lazy">
+          <div class="amenity-overlay"><span>ETAPA 4</span><h3>Club Stella</h3><p>Restaurante · Bar · Muelle · Mirador · Cuerpo de agua · Grill</p></div>
+        </article>
+        <article class="amenity-card">
+          <img src="/assets/renders/day/gym.webp" alt="Ara Wellness Center" loading="lazy">
+          <div class="amenity-overlay"><span>ETAPA 5</span><h3>Ara Wellness Center</h3><p>Gym · Tenis · Pádel · Spa Zen · Canal de nado · Alberca</p></div>
+        </article>
       </div>
-      <div class="container cta-row"><button class="cta cta-gold js-qualify" type="button">Conoce si tu perfil es compatible <span>↗</span></button></div>
+      <div class="container cta-row reveal"><button class="cta cta-gold js-qualify">Descubre si tu perfil es compatible <span>↗</span></button></div>
     </section>
 
-    <section class="club section-dark-image reveal-snap">
-      <div class="club-bg"></div><div class="club-overlay"></div>
-      <div class="container club-content">
-        <div class="eyebrow light">07 · Club Stella</div>
-        <h2>Cuando el día termina,<br><em>la experiencia continúa.</em></h2>
-        <p>Casa club, restaurante, espacios de convivencia y un cuerpo de agua de aproximadamente 2,330 m².</p>
-        <button class="cta cta-light js-qualify" type="button">Conoce si tu perfil es compatible <span>↗</span></button>
-      </div>
-      <div class="container club-thumbs">
-        <figure><img src="/assets/renders/night/grill-dining-night.webp" alt="Restaurante Club Stella" loading="lazy"><figcaption>Restaurante</figcaption></figure>
-        <figure><img src="/assets/renders/night/grill-social-night.webp" alt="Espacio social nocturno" loading="lazy"><figcaption>Convivencia</figcaption></figure>
-        <figure><img src="/assets/renders/day/gym.webp" alt="Gimnasio" loading="lazy"><figcaption>Wellness</figcaption></figure>
-        <figure><img src="/assets/renders/day/canchas.webp" alt="Canchas" loading="lazy"><figcaption>Deporte</figcaption></figure>
+    <!-- CLUB STELLA -->
+    <section class="club section-deep">
+      <div class="club-media"><img src="/assets/renders/night/club-nocturno.webp" alt="Club Stella de noche" loading="lazy"></div>
+      <div class="club-overlay"></div>
+      <div class="container club-content reveal">
+        <div class="eyebrow eyebrow-light">CLUB STELLA · ETAPA 4</div>
+        <h2>Cuando el día termina,<br><em>la experiencia cambia de ritmo.</em></h2>
+        <p>Casa club, restaurante, muelle, mirador, grill y un cuerpo de agua de aproximadamente 2,330 m².</p>
+        <button class="cta cta-gold js-qualify">Descubre si tu perfil es compatible <span>↗</span></button>
       </div>
     </section>
 
-    <section class="beach section-cream reveal">
-      <div class="container two-up reverse-mobile">
-        <figure class="media-card"><img src="/assets/renders/day/roof.webp" alt="Espacio frente al mar" loading="lazy"></figure>
-        <div class="copy-block large-copy">
-          <div class="eyebrow">08 · Un beneficio único</div>
-          <h2>El mar también<br><em>forma parte de tu día.</em></h2>
-          <p>Como parte de la propuesta de Costella, el acceso a club de playa suma otra escala a la experiencia: relajarte, compartir y vivir la costa como parte del patrimonio cotidiano.</p>
-          <button class="text-link js-qualify" type="button">Conoce si tu perfil es compatible <span>↗</span></button>
+    <!-- GALLERY -->
+    <section class="gallery section-dark">
+      <div class="container gallery-head reveal">
+        <div class="eyebrow eyebrow-light">RITMOS DEL PROYECTO</div>
+        <h2>Espacios para que<br><em>el tiempo tenga otra forma.</em></h2>
+      </div>
+      <div class="container gallery-grid reveal">
+        <figure class="gallery-card wide"><img src="/assets/renders/night/grill-dining-night.webp" alt="Grill y convivencia" loading="lazy"><figcaption>Grill · convivencia</figcaption></figure>
+        <figure class="gallery-card"><img src="/assets/renders/day/spa.webp" alt="Spa Zen" loading="lazy"><figcaption>Spa Zen · bienestar</figcaption></figure>
+        <figure class="gallery-card tall"><img src="/assets/renders/night/ara-wellness-night.webp" alt="Wellness de noche" loading="lazy"><figcaption>Ara Wellness · experiencia nocturna</figcaption></figure>
+        <figure class="gallery-card"><img src="/assets/renders/day/canchas.webp" alt="Canchas deportivas" loading="lazy"><figcaption>Canchas · actividad</figcaption></figure>
+        <figure class="gallery-card wide"><img src="/assets/renders/night/grill-social-night.webp" alt="Área social nocturna" loading="lazy"><figcaption>Área social · noches largas</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- CLUB DE PLAYA -->
+    <section class="beach section-cream">
+      <div class="container beach-grid reveal">
+        <div class="beach-copy">
+          <div class="eyebrow">UN BENEFICIO DIFERENTE</div>
+          <h2>El mar también<br><em>forma parte de la experiencia.</em></h2>
+          <p>El proyecto contempla un beneficio de club de playa para disfrutar, relajarte y compartir. Las condiciones de acceso y operación deben confirmarse con el asesor.</p>
+          <button class="text-link dark js-qualify">Descubre si tu perfil es compatible <span>↗</span></button>
+        </div>
+        <div class="beach-image"><img src="/assets/renders/day/top-master-plan.webp" alt="Costella y su relación con la costa" loading="lazy"><span class="image-tag">COSTA YUCATECA</span></div>
+      </div>
+    </section>
+
+    <!-- CERTEZA -->
+    <section class="certainty section-dark">
+      <div class="container certainty-grid reveal">
+        <div>
+          <div class="eyebrow eyebrow-light">07 · CERTEZA</div>
+          <h2>Antes de hablar de rendimiento,<br><em>hablemos de certeza.</em></h2>
+        </div>
+        <div class="certainty-copy">
+          <p>Costella es propiedad privada en Telchac Pueblo y está planteado como desarrollo urbanizado residencial en régimen condominal.</p>
+          <div class="certainty-list">
+            <div><span>01</span><b>Uso habitacional</b><small>Desarrollo residencial.</small></div>
+            <div><span>02</span><b>Infraestructura</b><small>Alumbrado público, electricidad subterránea, agua en áreas comunes, drenaje pluvial y paisajismo.</small></div>
+            <div><span>03</span><b>Escrituración</b><small>Una vez liquidado el terreno, según la información comercial.</small></div>
+            <div><span>04</span><b>PROFECO</b><small>Consulta directamente con el asesor las condiciones y documentación vigente.</small></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="certainty section-cream-alt reveal">
-      <div class="container section-head split">
+    <!-- HISTORICAL VALUE -->
+    <section class="history section-cream">
+      <div class="container history-grid reveal">
         <div>
-          <div class="eyebrow">09 · Certeza</div>
-          <h2>Antes de hablar de valor,<br><em>hablemos de certeza.</em></h2>
+          <div class="eyebrow">EVOLUCIÓN HISTÓRICA</div>
+          <h2>Una inversión<br><em>con historia.</em></h2>
+          <p>El material comercial muestra una evolución histórica del valor por m² entre diciembre de 2023 y enero de 2026.</p>
+          <div class="history-values"><strong>$2,537</strong><span>→</span><strong>$3,922</strong></div>
+          <small>Valor histórico por m² mostrado en material comercial. No representa garantía de rendimiento futuro.</small>
         </div>
-        <div class="section-head-copy">La información legal y comercial forma parte de la decisión patrimonial. Costella se presenta como propiedad privada y desarrollo residencial en régimen condominal, con uso habitacional.</div>
-      </div>
-      <div class="container certainty-grid">
-        <div><span class="certainty-icon">◈</span><strong>Propiedad privada</strong><p>Tablaje 2879, Telchac Pueblo.</p></div>
-        <div><span class="certainty-icon">□</span><strong>Uso habitacional</strong><p>Desarrollo residencial urbanizado.</p></div>
-        <div><span class="certainty-icon">✓</span><strong>PROFECO</strong><p>Contrato de adhesión referido en la información comercial.</p></div>
-        <div><span class="certainty-icon">↗</span><strong>Escrituración</strong><p>Una vez liquidado el terreno, de acuerdo con la información disponible.</p></div>
+        <div class="history-card">
+          <div class="eyebrow eyebrow-light">VALOR HISTÓRICO</div>
+          <div class="history-chart">
+            <span style="height:34%"><b>$2,537</b><i>dic. 2023</i></span>
+            <span style="height:46%"><b>$2,778</b><i>abr. 2024</i></span>
+            <span style="height:58%"><b>$2,944</b><i>jun. 2024</i></span>
+            <span style="height:72%"><b>$3,302</b><i>feb. 2025</i></span>
+            <span style="height:88%"><b>$3,700</b><i>sep. 2025</i></span>
+            <span style="height:100%"><b>$3,922</b><i>ene. 2026</i></span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="history section-cream reveal">
-      <div class="container history-grid">
+    <!-- FAQ -->
+    <section id="preguntas" class="faq section-cream">
+      <div class="container faq-grid reveal">
         <div>
-          <div class="eyebrow">10 · Evolución histórica</div>
-          <h2>Una historia que<br><em>se puede observar.</em></h2>
-          <p>El material comercial presenta una evolución histórica del valor por m² entre diciembre de 2023 y enero de 2026.</p>
-          <div class="history-number">$2,537 <span>→</span> $3,922</div>
-          <small>Valor histórico por m² mostrado en el material comercial. No es una garantía de rendimiento futuro.</small>
-        </div>
-        <div class="history-panel"><span>Dato histórico</span><strong>+54.6%</strong><p>Evolución mostrada en el material comercial entre diciembre de 2023 y enero de 2026.</p></div>
-      </div>
-    </section>
-
-    <section class="faq section-cream-alt" id="preguntas">
-      <div class="container section-head split reveal">
-        <div>
-          <div class="eyebrow">Preguntas frecuentes</div>
+          <div class="eyebrow">PREGUNTAS FRECUENTES</div>
           <h2>Lo que necesitas saber<br><em>para dar el siguiente paso.</em></h2>
+          <button class="cta cta-navy js-qualify">Descubre si tu perfil es compatible <span>↗</span></button>
         </div>
-        <div class="section-head-copy">Respuestas concretas antes de conversar con un asesor.</div>
-      </div>
-      <div class="container faq-list reveal">
-        <details><summary>¿Cuántos terrenos tiene Costella?<span>+</span></summary><p>533 lotes residenciales.</p></details>
-        <details><summary>¿Cuáles son los tamaños de los terrenos?<span>+</span></summary><p>Desde 200 m² hasta 350 m².</p></details>
-        <details><summary>¿Con cuánto puedo apartar?<span>+</span></summary><p>El apartado se señala en $5,000 MXN.</p></details>
-        <details><summary>¿Cuál es el enganche mínimo?<span>+</span></summary><p>12% del precio del terreno, de acuerdo con la información comercial actual.</p></details>
-        <details><summary>¿Se puede comprar con crédito bancario o Infonavit?<span>+</span></summary><p>No. La adquisición se plantea con recursos propios o mediante el financiamiento del proyecto.</p></details>
-        <details><summary>¿Cuándo se entregan las etapas?<span>+</span></summary><p>Etapa 1: 2029 · Etapa 2: 2030 · Etapa 3: 2031. Etapas 4 y 5: próximamente, sujetas a comercialización.</p></details>
+        <div class="faq-list">
+          <details><summary>¿Cuántos terrenos son en total?</summary><p>533 lotes residenciales.</p></details>
+          <details><summary>¿Cuáles son las medidas de los terrenos?</summary><p>De 200 a 350 m².</p></details>
+          <details><summary>¿Con cuánto se puede apartar?</summary><p>$5,000 MXN, de acuerdo con la información comercial disponible.</p></details>
+          <details><summary>¿Cuál es el enganche mínimo?</summary><p>12% sobre el precio del terreno.</p></details>
+          <details><summary>¿Cuánto tiempo puedo financiar?</summary><p>De 12 hasta 180 meses. Los primeros 84 meses sin interés, según la información comercial.</p></details>
+          <details><summary>¿Cuándo se entrega cada etapa?</summary><p>Etapa 1 en 2029, Etapa 2 en 2030, Etapa 3 en 2031; Etapas 4 y 5 próximas a comercialización.</p></details>
+        </div>
       </div>
     </section>
 
-    <section class="final-cta reveal-snap">
-      <div class="final-bg"></div><div class="final-overlay"></div>
-      <div class="container final-content">
-        <div class="eyebrow light">El siguiente paso es personal</div>
-        <h2>Conoce si tu perfil es compatible<br><em>con Costella Telchac.</em></h2>
-        <p>Responde cinco preguntas. Si tu perfil encaja, podrás avanzar a una videollamada o al próximo webinar.</p>
-        <button class="cta cta-light large js-qualify" type="button">Conoce si tu perfil es compatible <span>↗</span></button>
+    <!-- FINAL CTA -->
+    <section class="closing">
+      <div class="closing-media"><img src="/assets/renders/night/entrada-nocturna.webp" alt="Costella de noche" loading="lazy"></div>
+      <div class="closing-overlay"></div>
+      <div class="container closing-content reveal">
+        <div class="eyebrow eyebrow-light">EL SIGUIENTE PASO</div>
+        <h2>Conoce si tu perfil es<br><em>compatible con Costella.</em></h2>
+        <p>Responde cinco preguntas y descubre qué sigue.</p>
+        <button class="cta cta-gold cta-large js-qualify">Descubre si tu perfil es compatible <span>↗</span></button>
       </div>
     </section>
   </main>
 
-  <div class="modal" id="qualificationModal" aria-hidden="true">
+  <footer class="site-footer section-deep">
+    <div class="container footer-top">
+      <div><img src="/assets/brand/costella-logo-white.png" alt="Costella"></div>
+      <div class="footer-note">Infraestructura para vivir con comodidad.<br>Aislamiento para convivir con la naturaleza.</div>
+      <a href="#top" class="to-top">↑ Volver arriba</a>
+    </div>
+    <div class="container footer-bottom">
+      <span>Costella Telchac Residencial</span><a href="/admin.html">Configuración</a><span>© <span id="year"></span> Costella</span>
+    </div>
+  </footer>
+
+  <!-- QUALIFICATION MODAL -->
+  <div class="modal" id="qualifyModal" aria-hidden="true">
     <div class="modal-backdrop" data-close-modal></div>
-    <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" id="modalClose" type="button" aria-label="Cerrar">×</button>
-      <div class="modal-top">
-        <div><span class="modal-kicker">Evaluación Costella</span><h2 id="modalTitle">Conoce si tu perfil es compatible.</h2></div>
-        <div class="progress-wrap"><span id="progressText">Empieza la evaluación</span><div class="progress"><i id="progressBar"></i></div><small id="stepCounter">Pregunta 1 de 5</small></div>
+    <div class="modal-shell" role="dialog" aria-modal="true" aria-labelledby="qualifyTitle">
+      <button class="modal-close" id="qualifyClose" aria-label="Cerrar">×</button>
+      <div class="modal-visual">
+        <img src="/assets/renders/night/club-stella-laguna-night.webp" alt="Club Stella de noche">
+        <div class="modal-visual-overlay"></div>
+        <div class="modal-visual-copy">
+          <span>ACCESO A EVALUACIÓN</span>
+          <h3>Descubre si Costella encaja contigo.</h3>
+          <p>Cinco preguntas. Un resultado. Un siguiente paso.</p>
+        </div>
       </div>
-      <form id="qualificationForm" class="qualification-form">
-        <fieldset class="q-step active" data-step="0"><legend>¿Cuánto puedes destinar hoy al enganche inicial?</legend><p>Tomamos como referencia un enganche inicial alrededor de $80,000 MXN. El monto real depende del terreno y las condiciones vigentes.</p>
-          <label><input type="radio" name="q1" value="80k-plus"><span>$80,000 MXN o más</span></label><label><input type="radio" name="q1" value="50-79k"><span>$50,000 a $79,999 MXN</span></label><label><input type="radio" name="q1" value="30-49k"><span>$30,000 a $49,999 MXN</span></label><label><input type="radio" name="q1" value="under-30k"><span>Menos de $30,000 / todavía no lo tengo</span></label></fieldset>
-        <fieldset class="q-step" data-step="1"><legend>¿Para qué buscas un terreno residencial?</legend><label><input type="radio" name="q2" value="build"><span>Construir mi casa</span></label><label><input type="radio" name="q2" value="invest"><span>Invertir y construir patrimonio</span></label><label><input type="radio" name="q2" value="resell"><span>Comprar para vender después</span></label><label><input type="radio" name="q2" value="explore"><span>Todavía estoy explorando</span></label></fieldset>
-        <fieldset class="q-step" data-step="2"><legend>¿Qué tan cómodo te resulta un desarrollo con entregas progresivas?</legend><label><input type="radio" name="q3" value="2029"><span>2029 me funciona</span></label><label><input type="radio" name="q3" value="2030-plus"><span>Puedo esperar más allá de 2029</span></label><label><input type="radio" name="q3" value="before-2029"><span>Necesito antes de 2029</span></label><label><input type="radio" name="q3" value="unknown"><span>Aún no tengo claro el horizonte</span></label></fieldset>
-        <fieldset class="q-step" data-step="3"><legend>¿Cuándo te gustaría tomar una decisión?</legend><label><input type="radio" name="q4" value="30-days"><span>En los próximos 30 días</span></label><label><input type="radio" name="q4" value="1-3-months"><span>En 1 a 3 meses</span></label><label><input type="radio" name="q4" value="3-6-months"><span>En 3 a 6 meses</span></label><label><input type="radio" name="q4" value="later"><span>Más adelante</span></label></fieldset>
-        <fieldset class="q-step" data-step="4"><legend>¿Qué te gustaría hacer después de conocer Costella?</legend><label><input type="radio" name="q5" value="call"><span>Agendar una videollamada</span></label><label><input type="radio" name="q5" value="webinar"><span>Conocer el próximo webinar</span></label><label><input type="radio" name="q5" value="info"><span>Revisar la información antes</span></label><label><input type="radio" name="q5" value="explore"><span>Explorar otros proyectos</span></label></fieldset>
-        <div class="form-actions"><button type="button" class="back" id="prevQ">← Atrás</button><button type="button" class="cta cta-navy" id="nextQ">Continuar <span>→</span></button></div>
-        <p class="form-error" id="formError" role="alert"></p>
-      </form>
-      <div class="result" id="resultPanel" hidden>
-        <div class="result-badge" id="resultBadge">Perfil compatible</div>
-        <h3 id="resultTitle"></h3><p id="resultBody"></p>
-        <div class="result-actions"><a class="cta cta-navy" id="bookingLink" href="#" target="_blank" rel="noopener" hidden>Agenda una videollamada ↗</a><a class="cta cta-gold" id="webinarLink" href="#" target="_blank" rel="noopener" hidden>Conoce el próximo webinar ↗</a></div>
-        <div class="alt-form" id="altForm" hidden><div class="eyebrow">Otro proyecto</div><h4>Cuéntanos qué estás buscando.</h4><p>Déjanos tus datos y te contactaremos cuando tengamos una alternativa que encaje mejor contigo.</p><form id="altLeadForm"><input name="name" required placeholder="Nombre completo"><input name="whatsapp" required placeholder="WhatsApp"><input name="email" type="email" placeholder="Correo electrónico"><select name="budget" required><option value="">¿Cuánto te gustaría invertir?</option><option>$50,000–$99,999 MXN</option><option>$100,000–$249,999 MXN</option><option>$250,000–$499,999 MXN</option><option>$500,000 MXN o más</option></select><textarea name="interest" rows="3" placeholder="¿Qué estás buscando?"></textarea><button class="cta cta-navy" type="submit">Quiero conocer otro proyecto <span>→</span></button><p class="form-note" id="altLeadNote"></p></form></div>
+      <div class="modal-content">
+        <div class="modal-progress"><span id="qualifyProgress"></span></div>
+        <div class="modal-meta"><span id="qualifyStepCounter">Pregunta 1 de 5</span><b id="qualifyProgressText">Empieza la evaluación</b></div>
+        <form id="qualificationForm">
+          <div class="qualify-step active" data-step="0">
+            <div class="step-tag">01 · ENTRADA</div>
+            <h2 id="qualifyTitle">¿Cuánto puedes destinar hoy al enganche inicial?</h2>
+            <p class="step-help">Tomamos como referencia un enganche alrededor de $80,000 MXN. La condición real depende del terreno y de la disponibilidad vigente.</p>
+            <label class="option"><input type="radio" name="q1" value="80k-plus"><span>$80,000 MXN o más</span></label>
+            <label class="option"><input type="radio" name="q1" value="50-79k"><span>$50,000 a $79,999 MXN</span></label>
+            <label class="option"><input type="radio" name="q1" value="30-49k"><span>$30,000 a $49,999 MXN</span></label>
+            <label class="option"><input type="radio" name="q1" value="under-30k"><span>Menos de $30,000 MXN / todavía no lo tengo</span></label>
+            <button class="cta cta-navy full" type="button" data-next>Continuar <span>→</span></button>
+          </div>
+          <div class="qualify-step" data-step="1">
+            <div class="step-tag">02 · INTENCIÓN</div><h2>¿Para qué buscas un terreno residencial?</h2>
+            <label class="option"><input type="radio" name="q2" value="build"><span>Construir mi casa</span></label>
+            <label class="option"><input type="radio" name="q2" value="invest"><span>Invertir y construir patrimonio</span></label>
+            <label class="option"><input type="radio" name="q2" value="resell"><span>Comprar para vender después</span></label>
+            <label class="option"><input type="radio" name="q2" value="explore"><span>Todavía estoy explorando opciones</span></label>
+            <div class="modal-nav"><button class="ghost" type="button" data-prev>← Atrás</button><button class="cta cta-navy" type="button" data-next>Continuar <span>→</span></button></div>
+          </div>
+          <div class="qualify-step" data-step="2">
+            <div class="step-tag">03 · HORIZONTE</div><h2>¿Qué tan cómodo te resulta un desarrollo con entregas progresivas?</h2>
+            <label class="option"><input type="radio" name="q3" value="2029"><span>2029 me funciona</span></label>
+            <label class="option"><input type="radio" name="q3" value="2030-plus"><span>Puedo esperar más allá de 2029</span></label>
+            <label class="option"><input type="radio" name="q3" value="before-2029"><span>Necesito recibir antes de 2029</span></label>
+            <label class="option"><input type="radio" name="q3" value="unknown"><span>Aún no tengo claro el horizonte</span></label>
+            <div class="modal-nav"><button class="ghost" type="button" data-prev>← Atrás</button><button class="cta cta-navy" type="button" data-next>Continuar <span>→</span></button></div>
+          </div>
+          <div class="qualify-step" data-step="3">
+            <div class="step-tag">04 · MOMENTO</div><h2>¿Cuándo te gustaría tomar una decisión?</h2>
+            <label class="option"><input type="radio" name="q4" value="30-days"><span>En los próximos 30 días</span></label>
+            <label class="option"><input type="radio" name="q4" value="1-3-months"><span>En 1 a 3 meses</span></label>
+            <label class="option"><input type="radio" name="q4" value="3-6-months"><span>En 3 a 6 meses</span></label>
+            <label class="option"><input type="radio" name="q4" value="later"><span>Más adelante</span></label>
+            <div class="modal-nav"><button class="ghost" type="button" data-prev>← Atrás</button><button class="cta cta-navy" type="button" data-next>Continuar <span>→</span></button></div>
+          </div>
+          <div class="qualify-step" data-step="4">
+            <div class="step-tag">05 · SIGUIENTE PASO</div><h2>¿Qué te gustaría hacer después de conocer Costella?</h2>
+            <label class="option"><input type="radio" name="q5" value="call"><span>Agendar una videollamada</span></label>
+            <label class="option"><input type="radio" name="q5" value="webinar"><span>Conocer el próximo webinar</span></label>
+            <label class="option"><input type="radio" name="q5" value="info"><span>Revisar la información antes</span></label>
+            <label class="option"><input type="radio" name="q5" value="explore"><span>Explorar otros proyectos</span></label>
+            <div class="modal-nav"><button class="ghost" type="button" data-prev>← Atrás</button><button class="cta cta-gold" type="button" id="showResult">Ver mi resultado <span>↗</span></button></div>
+          </div>
+          <p class="form-status" id="formStatus"></p>
+        </form>
+
+        <div class="result-panel" id="resultPanel" hidden>
+          <div class="result-icon" id="resultIcon">✓</div>
+          <div class="step-tag">RESULTADO</div>
+          <h2 id="resultTitle">Tu perfil es compatible con Costella.</h2>
+          <p id="resultBody"></p>
+          <div class="result-actions">
+            <a class="cta cta-gold" id="resultBooking" href="#" target="_blank" rel="noopener" hidden>Agenda una videollamada ↗</a>
+            <a class="cta cta-navy" id="resultWebinar" href="#" target="_blank" rel="noopener" hidden>Conoce el próximo webinar ↗</a>
+          </div>
+          <div class="scarcity" id="resultScarcity" hidden></div>
+          <div class="alternative-form" id="alternativeForm" hidden>
+            <div class="step-tag">OTRO PROYECTO</div>
+            <h3>Cuéntanos qué estás buscando.</h3>
+            <p>Déjanos tus datos y te contactaremos cuando tengamos una alternativa que se ajuste mejor a tu perfil.</p>
+            <form id="altLeadForm">
+              <input name="name" placeholder="Nombre" required>
+              <input name="whatsapp" placeholder="WhatsApp" inputmode="tel" required>
+              <input name="email" placeholder="Correo">
+              <select name="budget" required><option value="">¿Cuánto te gustaría invertir?</option><option>Menos de $500,000 MXN</option><option>$500,000–$1,000,000 MXN</option><option>$1,000,000–$2,000,000 MXN</option><option>Más de $2,000,000 MXN</option></select>
+              <textarea name="interest" rows="3" placeholder="¿Qué estás buscando?"></textarea>
+              <button class="cta cta-navy full" type="submit">Quiero conocer otro proyecto ↗</button>
+              <p class="form-status" id="altStatus"></p>
+            </form>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   </div>
 
-  <script src="/js/config.js"></script><script src="/js/main.js"></script>
-</body></html>
+<script src="/js/config.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>

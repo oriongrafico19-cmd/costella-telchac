@@ -1,34 +1,45 @@
-# Costella Telchac · V13
+# Costella Telchac · V14 Editorial
 
-Landing editorial inspirada en la lógica visual de un sitio institucional de arquitectura: hero visual fuerte, grid editorial, tipografía protagonista, blancos amplios, bloques asimétricos, secciones de proceso y cierre cinematográfico. La referencia se adapta a Costella y no reproduce el sitio de referencia.
+Landing estática editorial inspirada en la lógica de sitios institucionales de arquitectura: grid asimétrico, tipografía protagonista, bloques de imagen grandes, cifras como sistema visual y alternancia entre crema, azul profundo y noche.
 
-## Contenido de Costella
+No copia el sitio de referencia. La dirección se adapta al Brandbook y al contenido de Costella.
+
+## Contenido
 - 19 ha
-- 533 lotes
+- 533 lotes residenciales
 - 200–350 m²
 - 5 etapas
-- Etapa 1: 2029 · Etapa 2: 2030 · Etapa 3: 2031
-- Capella Core (Etapa 2)
-- Tau Core (Etapa 3)
-- Club Stella (Etapa 4)
-- Ara Wellness Center (Etapa 5)
+- Capella Core · Etapa 2
+- Tau Core · Etapa 3
+- Club Stella · Etapa 4
+- Ara Wellness Center · Etapa 5
 - Apartado $5,000 MXN
 - Enganche mínimo 12%
 - Financiamiento 12–180 meses
 - Mensualidades desde $3,300 MXN
-- Primeros 84 meses sin interés, según la información comercial proporcionada
+- Primeros 84 meses sin interés, según información comercial disponible
+- Video YouTube: https://youtu.be/GN3wHvDtAbM
 
-## CTA y evaluación
-Todos los CTA principales abren la misma evaluación de 5 preguntas. La evaluación usa una combinación de respuestas con umbral comercial: 2 o más criterios compatibles sobre 5 = perfil compatible. La lógica divide exactamente el espacio de 1,024 combinaciones en 75% compatibles y 25% alternativas; no implica que 75% de los visitantes reales vaya a calificar.
+## Imágenes
+Los originales se normalizan a WebP para asegurar carga consistente en navegador y Cloudflare Static Assets. Se conservan separadas las vistas de día y noche.
 
-Perfil compatible → booking / webinar.
-Perfil alternativo → formulario de nombre, WhatsApp, correo, presupuesto e interés.
+## CTA / evaluación
+Todos los CTA principales usan el mismo texto:
+“Descubre si tu perfil es compatible”
 
-## Video
-https://youtu.be/GN3wHvDtAbM
+El formulario aparece solamente cuando el visitante pulsa un CTA.
 
-## Admin
-`/admin.html` genera un `config.js` con booking, webinar, lead endpoint y Meta Pixel para reemplazar `js/config.js` en GitHub.
+La evaluación contiene 5 preguntas. 2 o más criterios compatibles producen un resultado compatible; la estructura de criterios divide matemáticamente 1,024 combinaciones en 75% compatibles y 25% alternativas. Esto es una distribución de combinaciones, no una predicción del comportamiento real de los visitantes.
+
+Compatible → booking/webinar.
+Alternativa → formulario con nombre, WhatsApp, correo, presupuesto e interés.
+
+## Configuración
+Editar `js/config.js` o usar `/admin.html` para generar un archivo `config.js`.
 
 ## Cloudflare
-Root `/` · Build vacío · Deploy `npx wrangler deploy`. Workers Static Assets sirven la landing completa.
+Root directory: `/`
+Build: vacío
+Deploy: `npx wrangler deploy`
+
+Workers Static Assets sirven todo el sitio desde la raíz.

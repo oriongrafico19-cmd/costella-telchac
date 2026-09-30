@@ -1,4 +1,5 @@
 README.md
 wrangler.toml
 .assetsignore
+assets/manifest.json
 admin.html

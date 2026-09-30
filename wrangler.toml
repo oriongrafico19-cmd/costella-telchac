@@ -1,5 +1,5 @@
-name = "costella-telchac-web"
-compatibility_date = "2026-09-29"
+name = "costella-telchac-v14"
+compatibility_date = "2026-09-30"
 workers_dev = true
 
 [assets]

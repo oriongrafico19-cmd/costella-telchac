@@ -1,0 +1,194 @@
+[
+  {
+    "path": "assets/brand/costella-logo-white.png",
+    "width": 2048,
+    "height": 709,
+    "format": "PNG"
+  },
+  {
+    "path": "assets/renders/day/aerea-club.webp",
+    "width": 3840,
+    "height": 2160,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/canal-nado.webp",
+    "width": 2560,
+    "height": 1440,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/canchas.webp",
+    "width": 2560,
+    "height": 1440,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/caseta.webp",
+    "width": 3840,
+    "height": 2160,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/family-club.webp",
+    "width": 2560,
+    "height": 1440,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/golfito.webp",
+    "width": 2560,
+    "height": 1440,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/grill.webp",
+    "width": 2560,
+    "height": 1440,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/gym.webp",
+    "width": 2560,
+    "height": 1440,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/juice-bar.webp",
+    "width": 3413,
+    "height": 3840,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/kids-club.webp",
+    "width": 2048,
+    "height": 2560,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/master-plan-detail.webp",
+    "width": 2048,
+    "height": 1152,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/master-plan-v13.webp",
+    "width": 2048,
+    "height": 1152,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/master-plan.webp",
+    "width": 3840,
+    "height": 2160,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/mens-cave.webp",
+    "width": 3413,
+    "height": 3840,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/parque.webp",
+    "width": 2560,
+    "height": 1440,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/piscina.webp",
+    "width": 3840,
+    "height": 2160,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/restaurante.webp",
+    "width": 3840,
+    "height": 2160,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/roof.webp",
+    "width": 3840,
+    "height": 2160,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/spa.webp",
+    "width": 3840,
+    "height": 2160,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/top-master-plan-v13.webp",
+    "width": 1796,
+    "height": 1600,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/top-master-plan.webp",
+    "width": 2048,
+    "height": 1824,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/day/wellness.webp",
+    "width": 3840,
+    "height": 2160,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/night/amenities-night.webp",
+    "width": 1365,
+    "height": 768,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/night/ara-wellness-night.webp",
+    "width": 2048,
+    "height": 868,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/night/club-nocturno.webp",
+    "width": 2048,
+    "height": 1152,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/night/club-stella-laguna-night.webp",
+    "width": 1248,
+    "height": 832,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/night/entrada-nocturna.webp",
+    "width": 2048,
+    "height": 1152,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/night/grill-dining-night.webp",
+    "width": 2048,
+    "height": 1365,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/night/grill-nocturno.webp",
+    "width": 2048,
+    "height": 1152,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/night/grill-social-night.webp",
+    "width": 2048,
+    "height": 1401,
+    "format": "WEBP"
+  },
+  {
+    "path": "assets/renders/night/master-plan-night.webp",
+    "width": 2048,
+    "height": 1824,
+    "format": "WEBP"
+  }
+]
