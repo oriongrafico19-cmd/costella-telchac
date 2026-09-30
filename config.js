@@ -1,10 +1,8 @@
 const COSTELLA_CONFIG = {
   bookingUrl: '',
-  leadEndpoint: '',
   webinarUrl: '',
+  leadEndpoint: '',
   webinarSlots: 10,
   showWebinarScarcity: false,
-  metaPixelId: '',
-  videoUrl: 'https://youtu.be/GN3wHvDtAbM',
-  qualificationReferenceDownPayment: 80000
+  metaPixelId: ''
 };
