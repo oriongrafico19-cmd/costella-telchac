@@ -1,40 +1,25 @@
-<!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Costella · Configuración</title>
-<link rel="stylesheet" href="/css/style.css">
-<style>
-body{background:#0b1c28;color:#f1eed6}.admin{max-width:900px;margin:0 auto;padding:80px 24px}.admin-card{background:#102a3a;border:1px solid rgba(241,238,214,.14);padding:35px;margin-top:24px}.admin h1{font-family:Lora,Georgia,serif;font-size:48px}.admin p{color:#b6c1c4}.admin label{display:block;text-transform:uppercase;letter-spacing:.16em;font-size:9px;margin:20px 0 7px}.admin input{width:100%;padding:13px 14px;border:1px solid rgba(241,238,214,.2);background:#0b1c28;color:#fff;font:inherit}.admin .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.admin .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}.admin .small{font-size:11px;color:#93a0a4}
-@media(max-width:700px){.admin .row{grid-template-columns:1fr}.admin h1{font-size:38px}}
-</style></head>
-<body>
-<div class="admin"><div class="eyebrow eyebrow-light">COSTELLA · CONFIGURACIÓN</div><h1>Administra los enlaces</h1><p>Configura booking, webinar, endpoint de leads y Meta Pixel. El panel genera un <code>config.js</code> listo para sustituir en GitHub.</p>
-<div class="admin-card">
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Costella · Configuración</title><link rel="stylesheet" href="/css/style.css"><style>
+body{background:#07131b;color:#f1eed6}.admin{width:min(920px,calc(100% - 36px));margin:auto;padding:90px 0}.admin h1{font-family:Lora,Georgia,serif;font-size:56px;line-height:1}.admin p{color:#9eaaae;max-width:700px}.card{margin-top:28px;background:#102a3a;border:1px solid rgba(241,238,214,.12);padding:32px}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;margin:18px 0 7px;font-size:9px;letter-spacing:.14em;text-transform:uppercase}input{width:100%;padding:13px 14px;background:#07131b;border:1px solid rgba(241,238,214,.16);color:#fff;font:inherit}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.hint{font-size:11px;color:#8d999d;margin-top:16px}@media(max-width:700px){.row{grid-template-columns:1fr}.admin h1{font-size:44px}}
+</style></head><body><div class="admin"><div class="eyebrow eyebrow-light">COSTELLA · CONFIGURACIÓN</div><h1>Administra los enlaces.</h1><p>Configura aquí el booking del asesor, webinar y endpoint de leads. El panel genera un <code>config.js</code> listo para subir a GitHub.</p><div class="card">
 <label>Booking / calendario del asesor</label><input id="booking" placeholder="https://...">
 <label>Webinar</label><input id="webinar" placeholder="https://...">
 <label>Lead endpoint</label><input id="lead" placeholder="https://...">
 <div class="row"><div><label>Meta Pixel ID</label><input id="pixel"></div><div><label>Lugares del webinar</label><input id="slots" type="number" value="10"></div></div>
-<label>Mostrar escasez del webinar</label><input id="scarcity" value="false" placeholder="true / false">
-<div class="actions"><button class="cta cta-gold" id="save">Descargar config.js</button><a class="cta cta-outline" href="/">Volver a la landing</a></div>
-<div class="small" id="status"></div>
+<label>Mostrar escasez del webinar</label><input id="scarcity" value="false">
+<div class="actions"><button id="save" class="cta cta-gold">Descargar config.js</button><a class="cta cta-light" href="/">Volver a la landing</a></div><div class="hint" id="status"></div>
 </div></div>
 <script>
 const ids=['booking','webinar','lead','pixel','slots','scarcity'];
-const saved=JSON.parse(localStorage.getItem('costella_admin_v14')||'{}');
-ids.forEach(id=>document.getElementById(id).value=saved[id] ?? document.getElementById(id).value);
-document.getElementById('save').onclick=()=>{
- const d=Object.fromEntries(ids.map(id=>[id,document.getElementById(id).value]));
- localStorage.setItem('costella_admin_v14',JSON.stringify(d));
- const text=`const COSTELLA_CONFIG = {
-  bookingUrl: ${JSON.stringify(d.booking)},
-  webinarUrl: ${JSON.stringify(d.webinar)},
-  leadEndpoint: ${JSON.stringify(d.lead)},
-  webinarSlots: ${Number(d.slots)||10},
-  showWebinarScarcity: ${String(d.scarcity).toLowerCase()==='true'},
-  metaPixelId: ${JSON.stringify(d.pixel)},
-  qualificationReferenceDownPayment: 80000
+const saved=JSON.parse(localStorage.getItem('costella_admin_v15')||'{}');
+ids.forEach(id=>document.getElementById(id).value=saved[id]??document.getElementById(id).value);
+document.getElementById('save').onclick=()=>{const d=Object.fromEntries(ids.map(id=>[id,document.getElementById(id).value]));localStorage.setItem('costella_admin_v15',JSON.stringify(d));const text=`const COSTELLA_CONFIG = {
+  bookingUrl:${JSON.stringify(d.booking)},
+  webinarUrl:${JSON.stringify(d.webinar)},
+  leadEndpoint:${JSON.stringify(d.lead)},
+  webinarSlots:${Number(d.slots)||10},
+  showWebinarScarcity:${String(d.scarcity).toLowerCase()==='true'},
+  metaPixelId:${JSON.stringify(d.pixel)},
+  qualificationReferenceDownPayment:80000
 };
-`;
- const blob=new Blob([text],{type:'text/javascript'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='config.js'; a.click(); URL.revokeObjectURL(a.href);
- document.getElementById('status').textContent='config.js generado correctamente.';
-};
-</script>
-</body></html>
+`;const blob=new Blob([text],{type:'text/javascript'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='config.js';a.click();URL.revokeObjectURL(a.href);document.getElementById('status').textContent='config.js generado.'};
+</script></body></html>

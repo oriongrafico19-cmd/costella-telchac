@@ -1,26 +1,17 @@
-document.documentElement.classList.add('js-enabled');
+document.documentElement.classList.add('js');
 
-const $ = (s, root=document) => root.querySelector(s);
-const $$ = (s, root=document) => Array.from(root.querySelectorAll(s));
-
-const config = window.COSTELLA_CONFIG || {
-  bookingUrl:'',
-  webinarUrl:'',
-  leadEndpoint:'',
-  webinarSlots:10,
-  showWebinarScarcity:false,
-  metaPixelId:'',
-  qualificationReferenceDownPayment:80000
-};
+const $ = (s,root=document)=>root.querySelector(s);
+const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
+const cfg = window.COSTELLA_CONFIG || {};
 
 const header = $('#siteHeader');
-const pageProgress = $('#pageProgress');
+const scrollProgress = $('#scrollProgress');
 const modal = $('#qualifyModal');
-const steps = $$('.qualify-step');
-const progress = $('#qualifyProgress');
-const progressText = $('#qualifyProgressText');
-const stepCounter = $('#qualifyStepCounter');
 const form = $('#qualificationForm');
+const steps = $$('.qualify-step');
+const qualifyProgress = $('#qualifyProgress');
+const progressText = $('#progressText');
+const stepCounter = $('#stepCounter');
 const formStatus = $('#formStatus');
 const resultPanel = $('#resultPanel');
 const resultBooking = $('#resultBooking');
@@ -28,163 +19,104 @@ const resultWebinar = $('#resultWebinar');
 const resultTitle = $('#resultTitle');
 const resultBody = $('#resultBody');
 const resultScarcity = $('#resultScarcity');
-const altBox = $('#alternativeForm');
+const alternativeForm = $('#alternativeForm');
 const altForm = $('#altLeadForm');
 const altStatus = $('#altStatus');
+const nextBtn = $('#nextBtn');
 
-let currentStep = 0;
-const answers = {};
+let step = 0;
+let answers = {};
 const progressMap = [0,38,58,78,92,100];
-
 const compatible = {
-  q1: new Set(['80k-plus']),
-  q2: new Set(['build','invest']),
-  q3: new Set(['2029','2030-plus']),
-  q4: new Set(['30-days','1-3-months']),
-  q5: new Set(['call','webinar'])
+  q1:new Set(['80k-plus']),
+  q2:new Set(['build','invest']),
+  q3:new Set(['2029','2030-plus']),
+  q4:new Set(['30-days','1-3-months']),
+  q5:new Set(['call','webinar'])
 };
 
-function updatePageProgress(){
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
-  pageProgress.style.width = pct.toFixed(1) + '%';
+function updateScroll(){
+  const max=document.documentElement.scrollHeight-window.innerHeight;
+  scrollProgress.style.width=(max>0?(window.scrollY/max)*100:0)+'%';
+  header.classList.toggle('scrolled',window.scrollY>20);
 }
-function handleHeader(){
-  header.classList.toggle('scrolled', window.scrollY > 25);
-}
-window.addEventListener('scroll',()=>{ updatePageProgress(); handleHeader(); },{passive:true});
-updatePageProgress(); handleHeader();
+window.addEventListener('scroll',updateScroll,{passive:true}); updateScroll();
 
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('is-visible'); });
+const revealObserver = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('is-visible'); });
 },{threshold:.12});
-$$('.reveal').forEach(el=>observer.observe(el));
+$$('.section-kicker,.editorial-head,.image-wide,.stats-band,.finance-grid,.amenity-card,.club-hero,.beach-grid,.certainty-grid,.history-grid,.faq-list,.final-content').forEach(el=>{
+  el.classList.add('reveal'); revealObserver.observe(el);
+});
 
+function resetModal(){
+  step=0; answers={}; form.reset(); form.hidden=false; resultPanel.hidden=true; alternativeForm.hidden=true;
+  resultBooking.hidden=true; resultWebinar.hidden=true; resultScarcity.hidden=true;
+  formStatus.textContent=''; altStatus.textContent=''; renderStep();
+}
 function openModal(){
-  currentStep=0;
-  Object.keys(answers).forEach(k=>delete answers[k]);
-  form.reset();
-  form.classList.remove('hidden');
-  resultPanel.hidden=true;
-  altBox.hidden=true;
-  resultBooking.hidden=true;
-  resultWebinar.hidden=true;
-  resultScarcity.hidden=true;
-  formStatus.textContent='';
-  renderStep();
-  modal.setAttribute('aria-hidden','false');
-  document.body.classList.add('modal-open');
+  resetModal(); modal.setAttribute('aria-hidden','false'); document.body.classList.add('modal-open');
 }
 function closeModal(){
-  modal.setAttribute('aria-hidden','true');
-  document.body.classList.remove('modal-open');
+  modal.setAttribute('aria-hidden','true'); document.body.classList.remove('modal-open');
 }
-$$('.js-qualify').forEach(b=>b.addEventListener('click',openModal));
+$$('.js-qualify').forEach(btn=>btn.addEventListener('click',openModal));
 $('#qualifyClose').addEventListener('click',closeModal);
-$$('[data-close-modal]').forEach(b=>b.addEventListener('click',closeModal));
+$$('[data-close-modal]').forEach(x=>x.addEventListener('click',closeModal));
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && modal.getAttribute('aria-hidden')==='false') closeModal(); });
 
 function renderStep(){
-  steps.forEach((step,i)=>step.classList.toggle('active',i===currentStep));
-  const pct=progressMap[currentStep];
-  progress.style.width=pct+'%';
-  progressText.textContent=currentStep===0?'Empieza la evaluación':pct+'% de avance';
-  stepCounter.textContent='Pregunta '+(currentStep+1)+' de 5';
+  steps.forEach((s,i)=>s.classList.toggle('active',i===step));
+  qualifyProgress.style.width=progressMap[step]+'%';
+  progressText.textContent=step===0?'Empieza la evaluación':progressMap[step]+'% de avance';
+  stepCounter.textContent='Pregunta '+(step+1)+' de 5';
+  $('#qualifyModal').querySelector('[data-prev]').style.visibility=step===0?'hidden':'visible';
+  nextBtn.textContent=(step===steps.length-1?'Ver mi resultado':'Continuar')+' →';
 }
-function requireChoice(q){
-  const value = form.querySelector(`input[name="${q}"]:checked`);
-  if(!value){
-    formStatus.textContent='Selecciona una opción para continuar.';
-    return null;
-  }
-  formStatus.textContent='';
-  return value.value;
+function readCurrent(){
+  const key='q'+(step+1);
+  const input=form.querySelector(`input[name="${key}"]:checked`);
+  if(!input){formStatus.textContent='Selecciona una opción para continuar.';return null;}
+  formStatus.textContent=''; answers[key]=input.value; return input.value;
 }
-$$('[data-next]').forEach(btn=>btn.addEventListener('click',()=>{
-  const q='q'+(currentStep+1);
-  const value=requireChoice(q);
-  if(!value)return;
-  answers[q]=value;
-  if(currentStep<steps.length-1){currentStep++; renderStep();}
-}));
-$$('[data-prev]').forEach(btn=>btn.addEventListener('click',()=>{currentStep=Math.max(0,currentStep-1); renderStep();}));
+nextBtn.addEventListener('click',()=>{
+  if(!readCurrent()) return;
+  if(step<steps.length-1){step++;renderStep();}else{showResult();}
+});
+$('[data-prev]').addEventListener('click',()=>{if(step>0){step--;renderStep();}});
 
-function computeResult(){
-  const score = Object.keys(compatible).reduce((sum,q)=>sum+(compatible[q].has(answers[q])?1:0),0);
+function compute(){
+  const score=Object.keys(compatible).reduce((n,q)=>n+(compatible[q].has(answers[q])?1:0),0);
   return {qualified:score>=2,score};
 }
-async function sendLead(extra){
-  const payload={source:'costella-v14-qualification',timestamp:new Date().toISOString(),answers,...extra};
-  try{localStorage.setItem('costella_last_lead',JSON.stringify(payload));}catch{}
-  if(!config.leadEndpoint)return;
-  try{
-    await fetch(config.leadEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true});
-  }catch(err){console.warn('Lead endpoint error',err);}
+function openExternal(url){
+  if(url) window.open(url,'_blank','noopener,noreferrer');
 }
-function track(event,params={}){
-  if(window.fbq) window.fbq('track',event,params);
-}
-async function showResult(){
-  const {qualified,score}=computeResult();
-  form.hidden=true;
-  resultPanel.hidden=false;
-  if(qualified){
-    $('#resultIcon').textContent='✓';
+function showResult(){
+  const result=compute();
+  form.hidden=true; resultPanel.hidden=false;
+  if(result.qualified){
     resultTitle.textContent='Tu perfil es compatible con Costella.';
-    resultBody.innerHTML='Tus respuestas coinciden con los criterios iniciales de esta evaluación.<br><strong>El siguiente paso es conocer disponibilidad, condiciones vigentes y resolver tus preguntas con un asesor.</strong>';
-    if(config.bookingUrl){
-      resultBooking.href=config.bookingUrl;
-      resultBooking.hidden=false;
+    resultBody.innerHTML='<strong>Por tus respuestas, vale la pena avanzar.</strong><br>El siguiente paso es conocer condiciones vigentes, disponibilidad y resolver tus preguntas con un asesor.';
+    resultBooking.hidden=!cfg.bookingUrl;
+    resultWebinar.hidden=!cfg.webinarUrl;
+    resultBooking.onclick=()=>openExternal(cfg.bookingUrl);
+    resultWebinar.onclick=()=>openExternal(cfg.webinarUrl);
+    if(cfg.showWebinarScarcity && cfg.webinarUrl){
+      resultScarcity.textContent=`Cupo confirmado: quedan ${cfg.webinarSlots||10} lugares para el próximo webinar.`;
+      resultScarcity.hidden=false;
     }
-    if(config.webinarUrl){
-      resultWebinar.href=config.webinarUrl;
-      resultWebinar.hidden=false;
-      if(config.showWebinarScarcity){
-        resultScarcity.textContent=`Cupo confirmado: ${config.webinarSlots} lugares disponibles para el próximo webinar.`;
-        resultScarcity.hidden=false;
-      }
-    }
-    altBox.hidden=true;
-    await sendLead({qualification:'compatible',score});
-    track('Lead',{content_name:'Costella compatible',score});
   }else{
-    $('#resultIcon').textContent='–';
-    resultTitle.textContent='Quizá estás buscando algo diferente a Costella.';
-    resultBody.innerHTML='No pasa nada. Queremos conocer mejor lo que buscas para poder avisarte cuando exista una alternativa que encaje mejor contigo.';
-    resultBooking.hidden=true;
-    resultWebinar.hidden=true;
-    resultScarcity.hidden=true;
-    altBox.hidden=false;
-    await sendLead({qualification:'alternative',score});
-    track('Lead',{content_name:'Costella alternative',score});
+    resultTitle.textContent='Hoy quizá estés buscando algo diferente.';
+    resultBody.textContent='Déjanos tus datos y cuéntanos qué estás buscando. Cuando exista un proyecto que encaje mejor contigo, podremos contactarte.';
+    alternativeForm.hidden=false;
   }
+  resultPanel.scrollIntoView({block:'nearest'});
 }
-$('#showResult').addEventListener('click',async()=>{
-  const q='q5';
-  const value=requireChoice(q);
-  if(!value)return;
-  answers[q]=value;
-  currentStep=4;
-  progress.style.width='100%';
-  progressText.textContent='100% de avance';
-  stepCounter.textContent='Evaluación completada';
-  await showResult();
-});
-
-altForm.addEventListener('submit',async e=>{
+altForm.addEventListener('submit',e=>{
   e.preventDefault();
-  const fd=new FormData(altForm);
-  const contact={
-    name:String(fd.get('name')||'').trim(),
-    whatsapp:String(fd.get('whatsapp')||'').trim(),
-    email:String(fd.get('email')||'').trim(),
-    budget:String(fd.get('budget')||'').trim(),
-    interest:String(fd.get('interest')||'').trim()
-  };
-  if(!contact.name||!contact.whatsapp){altStatus.textContent='Agrega tu nombre y WhatsApp para continuar.';return;}
-  await sendLead({alternative:true,contact});
-  altStatus.textContent='Listo. Registramos tu interés y te contactaremos cuando tengamos una alternativa compatible.';
+  const data=Object.fromEntries(new FormData(altForm).entries());
+  try{localStorage.setItem('costella_alt_lead',JSON.stringify({timestamp:new Date().toISOString(),...data}));}catch{}
+  altStatus.textContent='Listo. Registramos tu interés.';
   altForm.querySelector('button').disabled=true;
 });
-
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.getAttribute('aria-hidden')==='false')closeModal();});
-$('#year').textContent=new Date().getFullYear();
