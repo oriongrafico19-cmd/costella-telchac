@@ -1,57 +1,45 @@
-# Costella Telchac Residencial · V16
+# Costella Telchac V17 · Long-form conversion
 
-Landing editorial/coastal para Costella Telchac Residencial.
+Landing estática inspirada en el ritmo de una long-form de conversión y adaptada a la identidad Costella.
 
-## Dirección visual
+## Estructura
 
-- Editorial arquitectónica inspirada en la referencia de Vértice, sin copiarla.
-- Costa + noche: azul profundo, arena, verde selva y luz cálida.
-- Retícula de contenido controlada, tipografía serif para titulares y sans para interfaz.
-- Imágenes de día para territorio/planeación y noche para experiencia/Club Stella.
-- Master Plan y Top Master Plan integrados como piezas visuales principales.
+/assets/brand/  identidad
+/assets/master/  Top Master + Master Plan
+/assets/day/  renders diurnos
+/assets/night/  renders nocturnos
+/css/style.css
+/js/config.js
+/js/main.js
+/index.html
+/admin.html
 
-## Conversión
+## Funnel
 
-Todos los CTA principales abren el formulario de evaluación. La landing no muestra el formulario de forma permanente.
+Todos los CTAs principales abren una evaluación modal de 5 preguntas.
+El resultado es comercial inicial:
+- 2 o más respuestas compatibles → booking/webinar.
+- 0 o 1 respuesta compatible → formulario de alternativa.
 
-Flujo:
+Con 4 respuestas por pregunta, la regla produce 75% de combinaciones compatibles y 25% alternativas dentro del universo matemático de combinaciones.
 
-Landing → 5 preguntas → clasificación → booking/webinar o captura de alternativa.
+## Datos de Costella integrados
 
-## Configuración
+19 ha, 533 lotes, 200–350 m², 5 etapas; apartado $5,000; enganche mínimo 12%; financiamiento 12–180 meses; mensualidades desde $3,300.
 
-Editar `js/config.js` para añadir:
+Amenidades: Capella Core (Etapa 2), Tau Core (Etapa 3), Club Stella (Etapa 4), Ara Wellness Center (Etapa 5).
 
-- bookingUrl
-- webinarUrl
-- leadEndpoint
-- Meta Pixel
-- cupo de webinar
-
-`admin.html` permite preparar estas variables y descargar un `config.js` listo para reemplazo.
+## Video
+https://youtu.be/GN3wHvDtAbM
 
 ## Cloudflare
 
-Workers Static Assets:
-
-```text
 Root directory: /
-Build command: [vacío]
+Build command: vacío
 Deploy command: npx wrangler deploy
-Branch: main
-```
 
-No existe `site/` y no existe `ai/` en esta versión.
+El proyecto usa Workers Static Assets.
 
-## Datos comerciales incorporados
+## Admin
 
-- 19 hectáreas
-- 533 lotes
-- 200–350 m²
-- 5 etapas
-- Apartado $5,000 MXN
-- Enganche mínimo 12%
-- Financiamiento 12–180 meses
-- Mensualidades desde $3,300 MXN
-- Más de 50 amenidades en Capella Core, Tau Core, Club Stella y Ara Wellness Center
-- Entregas por etapa: 2029, 2030, 2031 y etapas 4/5 próximamente, sujetas a comercialización
+/admin.html permite preparar booking, webinar, lead endpoint y Pixel. Descarga `config.js` y reemplaza `/js/config.js` para publicar cambios.
